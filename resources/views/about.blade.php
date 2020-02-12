@@ -73,7 +73,25 @@
           		</div>
 
           		<div class="exp mt-5 ftco-animate">
-          			<h2 class="mb-4">Experience</h2>
+					<h2 class="mb-4">Experience</h2>
+					<div class="exp-wrap py-4">
+						<div class="desc">
+							<h4>Web &amp; Software Developer<span> - Decoded by Africa's Talking</span> </h4>
+							<p class="location">Nairobi - Kenya</p>
+						</div>
+						<div class="year">
+							<p>February 2020 - Current</p>
+						</div>
+					</div>
+					<div class="exp-wrap py-4">
+						<div class="desc">
+							<h4>Web &amp; Android App Developer<span> - Jubilee Party</span> </h4>
+							<p class="location">Nairobi - Kenya</p>
+						</div>
+						<div class="year">
+							<p>November 2016 - Current</p>
+						</div>
+					</div>
           			<div class="exp-wrap py-4">
           				<div class="desc">
 	          				<h4>Software Developer<span> - Alfones Communications</span> </h4>
@@ -81,16 +99,6 @@
           				</div>
           				<div class="year">
           					<p>December 2018 - February 2019</p>
-          				</div>
-          			</div>
-
-          			<div class="exp-wrap py-4">
-          				<div class="desc">
-	          				<h4>Web &amp; Android App Developer<span> - Jubilee Party</span> </h4>
-	          				<p class="location">Nairobi - Kenya</p>
-          				</div>
-          				<div class="year">
-          					<p>November 2016 - November 2017</p>
           				</div>
           			</div>
 

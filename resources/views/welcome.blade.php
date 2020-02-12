@@ -139,28 +139,39 @@
             </div>
           </div>
           <div class="row no-gutters">
-          <div class="block-3 d-md-flex ftco-animate" data-scrollax-parent="true">
-            <a href="https://senator.kasangasylvia.co.ke/wp/" class="image d-flex justify-content-center align-items-center" style="background-image: url('images/portfolio1.png'); " data-scrollax=" properties: { translateY: '-30%'}">
-              
-            </a>
-            <div class="text">
-              <h4 class="subheading">Senator Sylvia Kasanga</h4>
-              <h2 class="heading"><a href="#">Personal website for the esteemed Senator</a></h2>
-              <p>A project that showcases my grip on wordpress and it's themes that serve the clients needs</p>
-              <p><a href="https://senator.kasangasylvia.co.ke/wp/">View Project</a></p>
+            <div class="block-3 d-md-flex ftco-animate" data-scrollax-parent="true">
+              <a href="https://truekenyan.herokuapp.com/" class="image order-2 d-flex justify-content-center align-items-center" style="background-image: url('images/portfolio3.png'); " data-scrollax=" properties: { translateY: '-30%'}">
+                
+              </a>
+              <div class="text">
+                <h4 class="subheading">trueKenyan</h4>
+                <h2 class="heading"><a href="#">A blog for the people, by the people - on the blockchain</a></h2>
+                <p>A project that showcases my grip on Ethereum & Solidity, Truffle framework and ReactJs</p>
+                <p><a href="https://github.com/BrianMwangi21/truekenyan">View Project On Github</a></p>
+              </div>
             </div>
-          </div>
-          <div class="block-3 d-md-flex ftco-animate" data-scrollax-parent="true">
-            <a href="https://senator.kasangasylvia.co.ke/wp/" class="image order-2 d-flex justify-content-center align-items-center" style="background-image: url('images/portfolio2.png'); " data-scrollax=" properties: { translateY: '-30%'}">
-              
-            </a>
-            <div class="text order-1">
-              <h4 class="subheading">Ceramic Pro Kenya</h4>
-              <h2 class="heading"><a href="#">Website for the Ceramic installer company</a></h2>
-              <p>A project that showcases my grip on wordpress and it's themes that serve the clients needs</p>
-              <p><a href="http://ceramicprokenya.co.ke/">View Project</a></p>
+            <div class="block-3 d-md-flex ftco-animate" data-scrollax-parent="true">
+              <a href="https://senator.kasangasylvia.co.ke/wp/" class="image d-flex justify-content-center align-items-center" style="background-image: url('images/portfolio1.png'); " data-scrollax=" properties: { translateY: '-30%'}">
+                
+              </a>
+              <div class="text">
+                <h4 class="subheading">Senator Sylvia Kasanga</h4>
+                <h2 class="heading"><a href="#">Personal website for the esteemed Senator</a></h2>
+                <p>A project that showcases my grip on wordpress and it's themes that serve the clients needs</p>
+                <p><a href="https://senator.kasangasylvia.co.ke/wp/">View Project</a></p>
+              </div>
             </div>
-          </div>
+            <div class="block-3 d-md-flex ftco-animate" data-scrollax-parent="true">
+              <a href="https://senator.kasangasylvia.co.ke/wp/" class="image order-2 d-flex justify-content-center align-items-center" style="background-image: url('images/portfolio2.png'); " data-scrollax=" properties: { translateY: '-30%'}">
+                
+              </a>
+              <div class="text order-1">
+                <h4 class="subheading">Ceramic Pro Kenya</h4>
+                <h2 class="heading"><a href="#">Website for the Ceramic installer company</a></h2>
+                <p>A project that showcases my grip on wordpress and it's themes that serve the clients needs</p>
+                <p><a href="http://ceramicprokenya.co.ke/">View Project</a></p>
+              </div>
+            </div>
         </div>
         </div>
       </section>
