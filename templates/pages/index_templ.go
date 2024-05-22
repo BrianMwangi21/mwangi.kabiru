@@ -60,7 +60,7 @@ func MetaTags(keywords, description string) templ.Component {
 	})
 }
 
-func BodyContent(experiences []Experince) templ.Component {
+func BodyContent(experiences []Experince, projects []Project, lingos []string) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -73,7 +73,7 @@ func BodyContent(experiences []Experince) templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"app\" class=\"flex flex-col gap-6 justify-center place-items-center w-screen md:gap-12 h-fit\"><div class=\"p-12 flex flex-col gap-6 justify-center place-items-center\"><div class=\"h-24 w-24 rounded-full outline outline-offset-2 outline-[#002D62] bg-cover overflow-hidden bg-[url(&#39;/static/images/me-away.jpeg&#39;)] transition duration-500 cursor-pointer hover:scale-125\"></div><p class=\"text-4xl md:text-6xl text-[#002D62] font-black\">mwangi.kabiru</p><div class=\"flex flex-row gap-4 items-center\"><a href=\"https://www.linkedin.com/in/brian-mwangi/\" target=\"_blank\"><img src=\"/static/images/linkedin.svg\" class=\"h-6 w-6\" alt=\"LinkedIn Link\"></a> <a href=\"https://github.com/BrianMwangi21\" target=\"_blank\"><img src=\"/static/images/github.svg\" class=\"h-6 w-6\" alt=\"Github Link\"></a> <a href=\"mailto:mwangikabiru21@gmail.com\" target=\"_blank\"><img src=\"/static/images/gmail.svg\" class=\"h-6 w-6\" alt=\"Gmail Link\"></a></div></div><div class=\"flex flex-col justify-center place-items-center w-[80%]\"><p class=\"dancing-font text-4xl md:text-5xl blur-[1px]\">Elevator Pitch</p><div class=\"p-6 bg-transparent border border-gray-100 rounded-lg shadow-lg transition duration-500 cursor-pointer hover:bg-[#fefef5] w-full z-10 -mt-4\"><p class=\"text-center text-md md:text-lg\">I love to code. <br>I love solving problems. <br>I love creating. <br>I love it all. <br><br>I use Neovim btw.</p></div></div><div class=\"flex flex-col gap-4 w-[80%] mt-4\"><p class=\"text-2xl md:text-4xl text-[#002D62] font-bold\">Ex<span class=\"underline\">perience</span></p><div class=\"grid grid-cols-1 gap-4 md:grid-cols-2\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"app\" class=\"flex flex-col gap-6 justify-center place-items-center md:gap-12 h-fit py-8\"><div class=\"p-12 flex flex-col gap-6 justify-center place-items-center\"><div class=\"h-24 w-24 rounded-full outline outline-offset-2 outline-[#002D62] bg-cover overflow-hidden bg-[url(&#39;/static/images/me-away.jpeg&#39;)] transition duration-500 cursor-pointer hover:scale-125\"></div><p class=\"text-4xl md:text-6xl text-[#002D62] font-black\">mwangi.kabiru</p><div class=\"flex flex-row gap-4 items-center\"><a href=\"https://www.linkedin.com/in/brian-mwangi/\" target=\"_blank\"><img src=\"/static/images/linkedin.svg\" class=\"h-6 w-6\" alt=\"LinkedIn Link\"></a> <a href=\"https://github.com/BrianMwangi21\" target=\"_blank\"><img src=\"/static/images/github.svg\" class=\"h-6 w-6\" alt=\"Github Link\"></a> <a href=\"mailto:mwangikabiru21@gmail.com\" target=\"_blank\"><img src=\"/static/images/gmail.svg\" class=\"h-6 w-6\" alt=\"Gmail Link\"></a></div></div><div class=\"flex flex-col justify-center place-items-center w-4/5\"><p class=\"dancing-font text-4xl md:text-5xl blur-[1px]\">Elevator Pitch</p><div class=\"p-6 bg-transparent border border-gray-100 rounded-lg shadow-lg transition duration-500 cursor-pointer hover:bg-[#fefef5] w-full z-10 -mt-4\"><p class=\"text-center text-md md:text-lg\">I love to code. <br>I love solving problems. <br>I love creating. <br>I love it all. <br><br>I use Neovim btw 🤷.</p></div></div><div class=\"flex flex-col gap-6 w-4/5 mt-4\"><p class=\"text-2xl md:text-4xl text-[#002D62] font-bold\">Ex<span class=\"underline\">perience</span> - places that bet on me</p><div class=\"grid grid-cols-1 gap-4 md:grid-cols-2\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -127,6 +127,87 @@ func BodyContent(experiences []Experince) templ.Component {
 				return templ_7745c5c3_Err
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div><div class=\"flex flex-col gap-6 w-4/5 mt-4\"><p class=\"text-2xl md:text-4xl text-[#002D62] font-bold\">Pro<span class=\"underline\">jects</span> - where my passion keeps burning</p><div class=\"grid grid-cols-1 gap-4 md:grid-cols-2\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		for _, project := range projects {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"flex flex-col p-6 bg-transparent border border-gray-100 rounded-lg shadow-lg w-full\"><p class=\"font-semibold text-lg md:text-xl text-[#002D62]\"><a class=\"underline\" href=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var9 templ.SafeURL = templ.SafeURL(project.Link)
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(string(templ_7745c5c3_Var9)))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" target=\"_blank\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var10 string
+			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(project.Name)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 60, Col: 152}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</a></p><p class=\"text-base mt-2\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var11 string
+			templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(project.Description)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 61, Col: 52}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div><div class=\"flex flex-col gap-6 w-4/5 mt-4\"><p class=\"text-2xl md:text-4xl text-[#002D62] font-bold\">Lin<span class=\"underline\">gos & skills</span> - my preferred arsenal</p><div class=\"flex flex-row gap-12 flex-wrap justify-center place-items-center md:justify-start\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		for _, lingo := range lingos {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<img src=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var12 string
+			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(lingo)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 72, Col: 20}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"h-24 w-24\" alt=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var13 string
+			templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(lingo)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 72, Col: 50}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

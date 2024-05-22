@@ -5,8 +5,8 @@ templ MetaTags(keywords, description string) {
 	<meta name="description" content={ description }/>
 }
 
-templ BodyContent(experiences []Experince) {
-	<div id="app" class="flex flex-col gap-6 justify-center place-items-center w-screen md:gap-12 h-fit">
+templ BodyContent(experiences []Experince, projects []Project, lingos []string) {
+	<div id="app" class="flex flex-col gap-6 justify-center place-items-center md:gap-12 h-fit py-8">
 		<div class="p-12 flex flex-col gap-6 justify-center place-items-center">
 			<div class="h-24 w-24 rounded-full outline outline-offset-2 outline-[#002D62] bg-cover overflow-hidden bg-[url('/static/images/me-away.jpeg')] transition duration-500 cursor-pointer hover:scale-125"></div>
 			<p class="text-4xl md:text-6xl text-[#002D62] font-black">mwangi.kabiru</p>
@@ -23,7 +23,7 @@ templ BodyContent(experiences []Experince) {
 			</div>
 		</div>
 
-		<div class="flex flex-col justify-center place-items-center w-[80%]">
+		<div class="flex flex-col justify-center place-items-center w-4/5">
 			<p class="dancing-font text-4xl md:text-5xl blur-[1px]">Elevator Pitch</p>
 
 			<div class="p-6 bg-transparent border border-gray-100 rounded-lg shadow-lg transition duration-500 cursor-pointer hover:bg-[#fefef5] w-full z-10 -mt-4">
@@ -32,13 +32,13 @@ templ BodyContent(experiences []Experince) {
 					I love solving problems. <br />
 					I love creating. <br /> 
 					I love it all. <br /><br />
-					I use Neovim btw.
+					I use Neovim btw 🤷.
 				</p>
 			</div>
 		</div>
 		
-		<div class="flex flex-col gap-4 w-[80%] mt-4">
-			<p class="text-2xl md:text-4xl text-[#002D62] font-bold">Ex<span class="underline">perience</span></p>
+		<div class="flex flex-col gap-6 w-4/5 mt-4">
+			<p class="text-2xl md:text-4xl text-[#002D62] font-bold">Ex<span class="underline">perience</span> - places that bet on me</p>
 
 			<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
 				for _, experience := range experiences {
@@ -47,6 +47,29 @@ templ BodyContent(experiences []Experince) {
 						<p class="font-medium text-base md:text-lg">at <a class="underline" href={ templ.SafeURL(experience.CompanyLink) } target="_blank">{experience.Company}</a></p>
 						<p class="text-base mt-2">{experience.Description}</p>
 					</div>
+				}
+			</div>
+		</div>
+		
+		<div class="flex flex-col gap-6 w-4/5 mt-4">
+			<p class="text-2xl md:text-4xl text-[#002D62] font-bold">Pro<span class="underline">jects</span> - where my passion keeps burning</p>
+
+			<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+				for _, project := range projects {
+					<div class="flex flex-col p-6 bg-transparent border border-gray-100 rounded-lg shadow-lg w-full">
+						<p class="font-semibold text-lg md:text-xl text-[#002D62]"><a class="underline" href={ templ.SafeURL(project.Link) } target="_blank">{project.Name}</a></p>
+						<p class="text-base mt-2">{project.Description}</p> 
+					</div>
+				}
+			</div>
+		</div>
+		
+		<div class="flex flex-col gap-6 w-4/5 mt-4">
+			<p class="text-2xl md:text-4xl text-[#002D62] font-bold">Lin<span class="underline">gos & skills</span> - my preferred arsenal</p>
+			
+			<div class="flex flex-row gap-12 flex-wrap justify-center place-items-center md:justify-start">
+				for _, lingo := range lingos {
+					<img src={lingo} class="h-24 w-24" alt={lingo}/>
 				}
 			</div>
 		</div>

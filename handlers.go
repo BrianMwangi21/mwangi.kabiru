@@ -15,7 +15,7 @@ func indexViewHandler(c *fiber.Ctx) error {
 		"mwangi.kabiru",
 		"Allow me to reintroduce myself! Welcome aboard",
 	)
-	bodyContent := pages.BodyContent(pages.EXPERIENCES)
+	bodyContent := pages.BodyContent(pages.EXPERIENCES, pages.PROJECTS, pages.LINGOS)
 
 	templateHandler := templ.Handler(
 		templates.Layout(
