@@ -9,23 +9,17 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// indexViewHandler handles a view for the index page.
 func indexViewHandler(c *fiber.Ctx) error {
 
-	// Define template functions.
 	metaTags := pages.MetaTags(
-		"gowebly, htmx example page, go with htmx",               // define meta keywords
-		"Welcome to example! You're here because it worked out.", // define meta description
+		"mwangi.kabiru",
+		"Allow me to reintroduce myself! Welcome aboard",
 	)
-	bodyContent := pages.BodyContent(
-		"Welcome to example!",                // define h1 text
-		"You're here because it worked out.", // define p text
-	)
+	bodyContent := pages.BodyContent()
 
-	// Define template handler.
 	templateHandler := templ.Handler(
 		templates.Layout(
-			"Welcome to example!", // define title text
+			"mwangi.kabiru",
 			metaTags, bodyContent,
 		),
 	)
@@ -33,16 +27,4 @@ func indexViewHandler(c *fiber.Ctx) error {
 	// Render template layout.
 	return adaptor.HTTPHandler(templateHandler)(c)
 
-}
-
-// showContentAPIHandler handles an API endpoint to show content.
-func showContentAPIHandler(c *fiber.Ctx) error {
-	// Check, if the current request has a 'HX-Request' header.
-	// For more information, see https://htmx.org/docs/#request-headers
-	if c.Get("HX-Request") == "" || c.Get("HX-Request") != "true" {
-		// If not, return HTTP 400 error.
-		return fiber.NewError(fiber.StatusBadRequest, "non-htmx request")
-	}
-
-	return c.SendString("<p>🎉 Yes, <strong>htmx</strong> is ready to use! (<code>GET /api/hello-world</code>)</p>")
 }
