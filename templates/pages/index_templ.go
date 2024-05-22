@@ -60,7 +60,7 @@ func MetaTags(keywords, description string) templ.Component {
 	})
 }
 
-func BodyContent(experiences []Experince, projects []Project, lingos []string) templ.Component {
+func BodyContent(quote string, experiences []Experince, projects []Project, lingos []string) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -212,7 +212,20 @@ func BodyContent(experiences []Experince, projects []Project, lingos []string) t
 				return templ_7745c5c3_Err
 			}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div><div class=\"flex flex-col gap-6 w-4/5 mt-4 mb-16 justify-start\"><p class=\"text-2xl md:text-4xl text-[#002D62] font-bold\">Q<span class=\"underline\">uote of the day</span> - I mean, you've made it this far</p><p id=\"quote-result\" class=\"font-semibold text-lg md:text-xl\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var14 string
+		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(quote)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 81, Col: 10}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p><button hx-get=\"/api/get-quote\" hx-target=\"#quote-result\"><img src=\"static/images/refresh.svg\" class=\"h-6 w-6\"></button></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -5,7 +5,7 @@ templ MetaTags(keywords, description string) {
 	<meta name="description" content={ description }/>
 }
 
-templ BodyContent(experiences []Experince, projects []Project, lingos []string) {
+templ BodyContent(quote string, experiences []Experince, projects []Project, lingos []string) {
 	<div id="app" class="flex flex-col gap-6 justify-center place-items-center md:gap-12 h-fit py-8">
 		<div class="p-12 flex flex-col gap-6 justify-center place-items-center">
 			<div class="h-24 w-24 rounded-full outline outline-offset-2 outline-[#002D62] bg-cover overflow-hidden bg-[url('/static/images/me-away.jpeg')] transition duration-500 cursor-pointer hover:scale-125"></div>
@@ -72,6 +72,18 @@ templ BodyContent(experiences []Experince, projects []Project, lingos []string) 
 					<img src={lingo} class="h-24 w-24" alt={lingo}/>
 				}
 			</div>
+		</div>
+		
+		<div class="flex flex-col gap-6 w-4/5 mt-4 mb-16 justify-start">
+			<p class="text-2xl md:text-4xl text-[#002D62] font-bold">Q<span class="underline">uote of the day</span> - I mean, you've made it this far</p>
+
+			<p id="quote-result" class="font-semibold text-lg md:text-xl">
+				{quote}
+			</p>
+				
+			<button hx-get="/api/get-quote" hx-target="#quote-result">
+				<img src="static/images/refresh.svg" class="h-6 w-6" />
+			</button>
 		</div>
 	</div>
 }

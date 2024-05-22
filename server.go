@@ -34,5 +34,7 @@ func runServer() error {
 
 	server.Get("/", indexViewHandler)
 
+	server.Get("/api/get-quote", getQuoteHandler)
+
 	return server.Listen(fmt.Sprintf(":%d", port))
 }
