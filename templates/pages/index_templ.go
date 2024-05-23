@@ -212,7 +212,7 @@ func BodyContent(quote string, experiences []Experince, projects []Project, ling
 				return templ_7745c5c3_Err
 			}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div><div class=\"flex flex-col gap-6 w-4/5 mt-4 mb-16 justify-start\"><p class=\"text-2xl md:text-4xl text-[#002D62] font-bold\">Q<span class=\"underline\">uote of the day</span> - I mean, you've made it this far</p><p id=\"quote-result\" class=\"font-semibold text-lg md:text-xl\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div><div class=\"flex flex-col gap-6 w-4/5 mt-4 justify-start\"><p class=\"text-2xl md:text-4xl text-[#002D62] font-bold\">Q<span class=\"underline\">uote of the day</span> - I mean, you've made it this far</p><p id=\"quote-result\" class=\"font-semibold text-lg md:text-xl\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -225,7 +225,7 @@ func BodyContent(quote string, experiences []Experince, projects []Project, ling
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p><button hx-get=\"/api/get-quote\" hx-target=\"#quote-result\"><img src=\"static/images/refresh.svg\" class=\"h-6 w-6\"></button></div></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p><button class=\"w-fit p-2 bg-transparent border border-gray-100 rounded-lg shadow-lg md:transition md:duration-200 md:hover:scale-105\" hx-get=\"/api/get-quote\" hx-target=\"#quote-result\"><p>Refresh</p></button></div><div class=\"flex flex-row w-4/5 my-8 justify-center place-items-center\"><p class=\"font-light text-sm\">Made with love using <a class=\"underline\" href=\"https://github.com/gowebly/gowebly\" target=\"_blank\">Gowebly</a></p><img src=\"static/images/gowebly.svg\" class=\"h-4 w-4\"></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
