@@ -20,7 +20,7 @@ func getRandomQuote() string {
 func indexViewHandler(c *fiber.Ctx) error {
 	metaTags := pages.MetaTags(
 		"mwangi.kabiru",
-		"Allow me to reintroduce myself! Welcome aboard",
+		"Allow me to reintroduce myself!",
 	)
 
 	quote := getRandomQuote()
