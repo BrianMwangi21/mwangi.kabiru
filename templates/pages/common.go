@@ -89,4 +89,5 @@ var QUOTES = []string{
 	"Continue passing the baton to yourself",
 	"If you can't feel love in your simplest form infront of another person, then it is all performative",
 	"Never be afraid to kill side projects. I mean, killedbygoogle exists, right?",
+	"The good news is, you had a dream. The bad news is, it was onboard a Boeing",
 }
