@@ -34,6 +34,8 @@ func runServer() error {
 
 	server.Get("/", indexViewHandler)
 
+	server.Get("/paige", paigeHandler)
+
 	server.Get("/api/get-quote", getQuoteHandler)
 
 	return server.Listen(fmt.Sprintf(":%d", port))

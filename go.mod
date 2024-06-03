@@ -3,7 +3,7 @@ module github.com/BrianMwangi21/mwangi.kabiru
 go 1.22.0
 
 require (
-	github.com/a-h/templ v0.2.697
+	github.com/a-h/templ v0.2.707
 	github.com/gofiber/fiber/v2 v2.52.4
 	github.com/gofiber/template/html/v2 v2.1.1
 	github.com/gowebly/helpers v0.4.0

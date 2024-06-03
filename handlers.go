@@ -36,6 +36,24 @@ func indexViewHandler(c *fiber.Ctx) error {
 	return adaptor.HTTPHandler(templateHandler)(c)
 }
 
+func paigeHandler(c *fiber.Ctx) error {
+	metaTags := pages.MetaTags(
+		"mwangi.kabiru",
+		"Allow me to reintroduce myself!",
+	)
+
+	bodyContent := pages.PaigeContent()
+
+	templateHandler := templ.Handler(
+		templates.Layout(
+			"mwangi.kabiru",
+			metaTags, bodyContent,
+		),
+	)
+
+	return adaptor.HTTPHandler(templateHandler)(c)
+}
+
 func getQuoteHandler(c *fiber.Ctx) error {
 	if c.Get("HX-Request") == "" || c.Get("HX-Request") != "true" {
 		return fiber.NewError(fiber.StatusBadRequest, "non-htmx request")
