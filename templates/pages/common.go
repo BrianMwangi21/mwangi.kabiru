@@ -23,6 +23,7 @@ var EXPERIENCES = []Experince{
 
 var PROJECTS = []Project{
 	{Name: "anti-discover", Link: "https://anti-discover.fly.dev/", Description: "Sometimes, Discover Weekly gets boring. Get some suggestions that you would never think of!"},
+	{Name: "anti-charts", Link: "https://github.com/BrianMwangi21/anti-charts", Description: "Get the info for different crypto pairs from binance and perform analysis on it. You can also optionally make trades on Alpaca."},
 	{Name: "mwangi.kabiru", Link: "https://mwangikabiru.fly.dev/", Description: "We all need a beautiful portfolio, right ? And in HTMX and Templ, right ? I mean, look at this minimalist one."},
 	{Name: "thoughts.io", Link: "https://thoughts-io.vercel.app/", Description: "If your mind gets clouded and cluttered, sometimes you just want to see the thoughts float away."},
 	{Name: "orders-of-peaky", Link: "https://github.com/BrianMwangi21/order-of-peaky", Description: "Get the orderbook details from Binance on your CLI and keep a synchronized local orderbook."},
