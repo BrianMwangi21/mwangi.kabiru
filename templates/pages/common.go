@@ -26,6 +26,7 @@ var PROJECTS = []Project{
 	{Name: "anti-charts", Link: "https://github.com/BrianMwangi21/anti-charts", Description: "Get the info for different crypto pairs from binance and perform analysis on it. You can also optionally make trades on Alpaca."},
 	{Name: "mwangi.kabiru", Link: "https://mwangikabiru.fly.dev/", Description: "We all need a beautiful portfolio, right ? And in HTMX and Templ, right ? I mean, look at this minimalist one."},
 	{Name: "thoughts.io", Link: "https://thoughts-io.vercel.app/", Description: "If your mind gets clouded and cluttered, sometimes you just want to see the thoughts float away."},
+	{Name: "drawless", Link: "https://drawless.fly.dev/", Description: "Play a new chess variant where you can insert random pieces to keep it going"},
 	{Name: "orders-of-peaky", Link: "https://github.com/BrianMwangi21/order-of-peaky", Description: "Get the orderbook details from Binance on your CLI and keep a synchronized local orderbook."},
 	{Name: "calorie-counter", Link: "https://github.com/BrianMwangi21/calorie-counter", Description: "If AI content is harmful calories, we are about to be a generation of obese folks. Can you keep count ?"},
 }
