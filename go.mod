@@ -1,9 +1,9 @@
 module github.com/BrianMwangi21/mwangi.kabiru
 
-go 1.22.0
+go 1.23.4
 
 require (
-	github.com/a-h/templ v0.2.747
+	github.com/a-h/templ v0.3.819
 	github.com/gofiber/fiber/v2 v2.52.4
 	github.com/gofiber/template/html/v2 v2.1.1
 	github.com/gowebly/helpers v0.4.0
@@ -22,5 +22,5 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.51.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
-	golang.org/x/sys v0.21.0 // indirect
+	golang.org/x/sys v0.28.0 // indirect
 )
