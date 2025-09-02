@@ -30,6 +30,7 @@ var PROJECTS = []Project{
 	{Name: "orders-of-peaky", Link: "https://github.com/BrianMwangi21/order-of-peaky", Description: "Get the orderbook details from Binance on your CLI and keep a synchronized local orderbook."},
 	{Name: "calorie-counter", Link: "https://github.com/BrianMwangi21/calorie-counter", Description: "If AI content is harmful calories, we are about to be a generation of obese folks. Can you keep count ?"},
 	{Name: "elimu.dev", Link: "https://elimu.dev", Description: "Your premier education support tool. Empowering both teachers and learners."},
+	{Name: "raas", Link: "https://github.com/BrianMwangi21/raas", Description: "Romance as a Service. Your very own open-source wingman!"},
 }
 
 var LINGOS = []string{
