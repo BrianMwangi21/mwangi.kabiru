@@ -24,7 +24,7 @@ func indexViewHandler(c *fiber.Ctx) error {
 	)
 
 	quote := getRandomQuote()
-	bodyContent := pages.BodyContent(quote, pages.EXPERIENCES, pages.PROJECTS, pages.LINGOS)
+	bodyContent := pages.BodyContent(quote, pages.EXPERIENCES, pages.PROJECTS, pages.SKILLS)
 
 	templateHandler := templ.Handler(
 		templates.Layout(

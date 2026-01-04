@@ -4,28 +4,28 @@ import "github.com/BrianMwangi21/mwangi.kabiru/templates/pages"
 
 templ Layout(title string, metaTags, bodyContent templ.Component) {
 	<!DOCTYPE html>
-	<html lang="en">
+	<html lang="en" x-data="{ dark: localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches) }" x-init="$watch('dark', v => v ? $el.classList.add('dark') : $el.classList.remove('dark')); if (dark) $el.classList.add('dark')" class="scroll-smooth">
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 			<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 			<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' ws://localhost:*; img-src * data:;"/>
-			<meta name="theme-color" content="#FEFEF5"/>
+			<meta name="theme-color" content="#0f172a"/>
 			<title>{ title }</title>
 			@metaTags
 			<link rel="dns-prefetch" href="//fonts.googleapis.com"/>
 			<link rel="dns-prefetch" href="//fonts.gstatic.com"/>
 			<link rel="preconnect" href="//fonts.googleapis.com" crossorigin/>
 			<link rel="preconnect" href="//fonts.gstatic.com" crossorigin/>
-			<link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
-			<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
-			<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
-			<link rel="manifest" href="/static/site.webmanifest">
-			<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-			<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+			<link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png"/>
+			<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png"/>
+			<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png"/>
+			<link rel="manifest" href="/static/site.webmanifest"/>
+			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+			<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
 			<link href="/static/styles.css" rel="stylesheet"/>
 		</head>
-		<body onload={ pages.BodyScripts() }>
+		<body class="transition-colors duration-300" onload={ pages.BodyScripts() }>
 			@bodyContent
 			<script src="/static/scripts.js"></script>
 		</body>
