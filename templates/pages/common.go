@@ -31,6 +31,8 @@ var PROJECTS = []Project{
 	{Name: "calorie-counter", Link: "https://github.com/BrianMwangi21/calorie-counter", Description: "If AI content is harmful calories, we are about to be a generation of obese folks. Can you keep count ?"},
 	{Name: "elimu.dev", Link: "https://elimu.dev", Description: "Your premier education support tool. Empowering both teachers and learners."},
 	{Name: "raas", Link: "https://github.com/BrianMwangi21/raas", Description: "Romance as a Service. Your very own open-source wingman!"},
+	{Name: "boardsaga", Link: "https://boardsaga.vercel.app/", Description: "Transform your chess games into captivating stories"},
+	{Name: "revealreveal", Link: "https://revealreveal.vercel.app/", Description: "Create memorable reveal moments"},
 }
 
 var LINGOS = []string{
