@@ -386,4 +386,58 @@ html {
   .scroll-dots {
     display: none;
   }
+
+  /* Responsive text sizes */
+  h1 {
+    font-size: 2.25rem !important;
+  }
+
+  h2 {
+    font-size: 1.875rem !important;
+  }
+
+  /* Better padding on mobile */
+  section {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .card-light {
+    padding: 1.5rem !important;
+  }
+
+  /* Better button sizing on mobile */
+  .btn-primary {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  /* Responsive badge sizing */
+  .badge {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.875rem !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+  }
+
+  section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  .card-light {
+    border-radius: 0.5rem;
+  }
+
+  .grid {
+    gap: 1rem !important;
+  }
 }
