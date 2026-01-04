@@ -28,7 +28,15 @@ var EXPERIENCES = []Experince{
 		Title:        "Full Stack Developer",
 		Description:  "Working on Live Blog, a product of SourceFabric, which is an open source platform that allows coverage of live events and breaking news with a curated timeline including text, images, audio and video from reporters and social media channels.",
 		Duration:     "Nov 2023 - Present",
-		Technologies: []string{"Go", "Fiber", "Templ", "HTMX", "Alpine.js", "PostgreSQL", "TypeScript"},
+		Technologies: []string{"Python", "Pydantic", "Async Python", "React", "Angular", "TypeScript", "MongoDB", "Redis", "Elastic"},
+	},
+	{
+		Company:      "Atlys",
+		CompanyLink:  "https://www.atlys.com/",
+		Title:        "Frontend Developer",
+		Description:  "Improved Atlys UI/UX for both web and mobile platforms for the B2C product, resulting in increased user satisfaction and engagement. Helped migrate the integral blog section to Prismic CMS and optimized for SEO and speed.",
+		Duration:     "Sep 2022 - Oct 2023",
+		Technologies: []string{"Next.js", "Python", "Supabase", "Prismic CRM", "Tailwind CSS"},
 	},
 	{
 		Company:      "Atlys",
