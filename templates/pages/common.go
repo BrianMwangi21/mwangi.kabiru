@@ -28,7 +28,7 @@ var EXPERIENCES = []Experince{
 		Title:        "Full Stack Developer",
 		Description:  "Working on Live Blog, a product of SourceFabric, which is an open source platform that allows coverage of live events and breaking news with a curated timeline including text, images, audio and video from reporters and social media channels.",
 		Duration:     "Nov 2023 - Present",
-		Technologies: []string{"Python", "Pydantic", "Async Python", "React", "Angular", "TypeScript", "MongoDB", "Redis", "Elastic"},
+		Technologies: []string{"Python", "React", "Angular", "TypeScript", "MongoDB", "Redis", "Elastic"},
 	},
 	{
 		Company:      "Atlys",
