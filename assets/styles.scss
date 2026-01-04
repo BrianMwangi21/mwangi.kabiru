@@ -2,26 +2,388 @@
 @tailwind components;
 @tailwind utilities;
 
-/* User styles */
+/* ==================== Root & Base Styles ==================== */
 
 :root {
-  font-family: Montserrat, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  background-color: #fefef5;
+  color-scheme: dark light;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Light mode (default) */
+html {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+html.light {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+/* Dark mode */
+html.dark {
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+body {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* ==================== Typography & Text ==================== */
+
 .dancing-font {
-  font-family: "Dancing Script", cursive;
+  font-family: 'Dancing Script', cursive;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
   color: transparent;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #002D62;
+  -webkit-text-stroke-color: #002d62;
   text-stroke-width: 1px;
-  text-stroke-color: #002D62;
+  text-stroke-color: #002d62;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #002d62 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-creative {
+  background: linear-gradient(135deg, #002d62 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ==================== Glass Morphism & Cards ==================== */
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-effect {
+  background: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-light {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .card-light {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card-light:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  border-color: #cbd5e1;
+}
+
+.dark .card-light:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  border-color: #475569;
+}
+
+/* ==================== Badge & Tag Styles ==================== */
+
+.badge {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+}
+
+.badge-tech {
+  background-color: rgba(0, 45, 98, 0.1);
+  color: #002d62;
+  border: 1px solid rgba(0, 45, 98, 0.2);
+}
+
+.dark .badge-tech {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.badge-success {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.badge-creative {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.badge-proficiency {
+  background-color: rgba(0, 45, 98, 0.08);
+  color: #002d62;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.dark .badge-proficiency {
+  background-color: rgba(241, 245, 249, 0.1);
+  color: #cbd5e1;
+}
+
+/* ==================== Buttons & Interactive Elements ==================== */
+
+.btn-primary {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  background-color: #002d62;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary:hover {
+  background-color: #001f47;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 45, 98, 0.2);
+}
+
+.btn-secondary {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  background-color: transparent;
+  color: #002d62;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dark .btn-secondary {
+  color: #f1f5f9;
+  border-color: #334155;
+}
+
+.btn-secondary:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.dark .btn-secondary:hover {
+  background-color: #334155;
+  border-color: #475569;
+}
+
+/* ==================== Links & Hover Effects ==================== */
+
+a {
+  color: #002d62;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.dark a {
+  color: #10b981;
+}
+
+a.underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #002d62;
+  transition: width 0.3s ease;
+}
+
+.dark a.underline::after {
+  background-color: #10b981;
+}
+
+a.underline:hover::after {
+  width: 100%;
+}
+
+/* ==================== Proficiency Indicator ==================== */
+
+.proficiency-ring {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.dark .proficiency-ring {
+  border-color: #334155;
+}
+
+.proficiency-ring.expert {
+  border-color: #10b981;
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.proficiency-ring.proficient {
+  border-color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.1);
+}
+
+.proficiency-ring.learning {
+  border-color: #6b7280;
+  background-color: rgba(107, 114, 128, 0.1);
+}
+
+/* ==================== Animations ==================== */
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+.slide-in {
+  animation: slideIn 0.4s ease-out;
+}
+
+.glow-success {
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ==================== Scroll & Navigation ==================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll indicator dots */
+.scroll-dots {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 40;
+}
+
+.scroll-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: rgba(0, 45, 98, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.dark .scroll-dot {
+  background-color: rgba(241, 245, 249, 0.2);
+}
+
+.scroll-dot:hover {
+  background-color: #002d62;
+  transform: scale(1.3);
+}
+
+.dark .scroll-dot:hover {
+  background-color: #10b981;
+}
+
+.scroll-dot.active {
+  background-color: #002d62;
+  box-shadow: 0 0 10px rgba(0, 45, 98, 0.4);
+  transform: scale(1.4);
+}
+
+.dark .scroll-dot.active {
+  background-color: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+
+/* ==================== Utility Classes ==================== */
+
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gradient-border {
+  position: relative;
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(135deg, #002d62, #10b981) border-box;
+  border: 2px solid transparent;
+}
+
+/* ==================== Media Queries for Scroll Dots ==================== */
+
+@media (max-width: 768px) {
+  .scroll-dots {
+    display: none;
+  }
 }

@@ -1,11 +1,12 @@
 package pages
 
 type Experince struct {
-	Company     string
-	CompanyLink string
-	Title       string
-	Description string
-	Duration    string
+	Company      string
+	CompanyLink  string
+	Title        string
+	Description  string
+	Duration     string
+	Technologies []string
 }
 
 type Project struct {
@@ -14,11 +15,45 @@ type Project struct {
 	Description string
 }
 
+type Skill struct {
+	Icon        string
+	Name        string
+	Proficiency string // "Expert", "Proficient", "Learning"
+}
+
 var EXPERIENCES = []Experince{
-	{Company: "Sourcefabric z.ú", CompanyLink: "https://www.sourcefabric.org/", Title: "Full Stack Developer", Description: "Working on Live Blog, a product of SourceFabric, which is an open source platform that allows coverage of live events and breaking news with a curated timeline including text, images, audio and video from reporters and social media channels.", Duration: "Nov 2023 - Present"},
-	{Company: "Atlys", CompanyLink: "https://www.atlys.com/", Title: "Frontend Developer", Description: "Improved Atlys UI/UX for both web and mobile platforms for the B2C product, resulting in increased user satisfaction and engagement. Helped migrate the integral blog section to Prismic CMS and optimized for SEO and speed.", Duration: "Sep 2022 - Oct 2023"},
-	{Company: "Azenia Technology", CompanyLink: "https://azenia.com/", Title: "Full Stack Developer", Description: "Improved in-house bank management UI system as well as building robust APIs using Spring Boot for customer loan application process.", Duration: "Oct 2021 - Jan 2023"},
-	{Company: "Digital Vision EA", CompanyLink: "https://digitalvisionea.com/", Title: "Full Stack Developer", Description: "Enhanced user experience and accelerates web application responsiveness for our clients and users using the Chamasoft web application.", Duration: "Nov 2020 - Oct 2021"},
+	{
+		Company:      "Sourcefabric z.ú",
+		CompanyLink:  "https://www.sourcefabric.org/",
+		Title:        "Full Stack Developer",
+		Description:  "Working on Live Blog, a product of SourceFabric, which is an open source platform that allows coverage of live events and breaking news with a curated timeline including text, images, audio and video from reporters and social media channels.",
+		Duration:     "Nov 2023 - Present",
+		Technologies: []string{"Go", "Fiber", "Templ", "HTMX", "Alpine.js", "PostgreSQL", "TypeScript"},
+	},
+	{
+		Company:      "Atlys",
+		CompanyLink:  "https://www.atlys.com/",
+		Title:        "Frontend Developer",
+		Description:  "Improved Atlys UI/UX for both web and mobile platforms for the B2C product, resulting in increased user satisfaction and engagement. Helped migrate the integral blog section to Prismic CMS and optimized for SEO and speed.",
+		Duration:     "Sep 2022 - Oct 2023",
+		Technologies: []string{"React", "Next.js", "TypeScript", "Tailwind CSS", "Prismic CMS"},
+	},
+	{
+		Company:      "Azenia Technology",
+		CompanyLink:  "https://azenia.com/",
+		Title:        "Full Stack Developer",
+		Description:  "Improved in-house bank management UI system as well as building robust APIs using Spring Boot for customer loan application process.",
+		Duration:     "Oct 2021 - Jan 2023",
+		Technologies: []string{"Spring Boot", "Java", "React", "PostgreSQL", "Docker"},
+	},
+	{
+		Company:      "Digital Vision EA",
+		CompanyLink:  "https://digitalvisionea.com/",
+		Title:        "Full Stack Developer",
+		Description:  "Enhanced user experience and accelerates web application responsiveness for our clients and users using the Chamasoft web application.",
+		Duration:     "Nov 2020 - Oct 2021",
+		Technologies: []string{"Vue.js", "Python", "Django", "MySQL", "AWS"},
+	},
 }
 
 var PROJECTS = []Project{
@@ -35,6 +70,17 @@ var PROJECTS = []Project{
 	{Name: "revealreveal", Link: "https://revealreveal.vercel.app/", Description: "Create memorable reveal moments"},
 }
 
+var SKILLS = []Skill{
+	{Icon: "/static/images/go.svg", Name: "Go", Proficiency: "Expert"},
+	{Icon: "/static/images/python.svg", Name: "Python", Proficiency: "Proficient"},
+	{Icon: "/static/images/ts.svg", Name: "TypeScript", Proficiency: "Expert"},
+	{Icon: "/static/images/next.svg", Name: "Next.js", Proficiency: "Proficient"},
+	{Icon: "/static/images/java.svg", Name: "Java", Proficiency: "Proficient"},
+	{Icon: "/static/images/htmx.svg", Name: "HTMX", Proficiency: "Expert"},
+	{Icon: "/static/images/neovim.svg", Name: "Neovim", Proficiency: "Expert"},
+}
+
+// Legacy LINGOS for backward compatibility if needed
 var LINGOS = []string{
 	"/static/images/go.svg",
 	"/static/images/python.svg",
