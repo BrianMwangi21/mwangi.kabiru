@@ -76,6 +76,7 @@ var PROJECTS = []Project{
 	{Name: "raas", Link: "https://github.com/BrianMwangi21/raas", Description: "Romance as a Service. Your very own open-source wingman!"},
 	{Name: "boardsaga", Link: "https://boardsaga.vercel.app/", Description: "Transform your chess games into captivating stories"},
 	{Name: "revealreveal", Link: "https://revealreveal.vercel.app/", Description: "Create memorable reveal moments"},
+	{Name: "analitika", Link: "https://analitika.vercel.app/", Description: "Get you game odds and bets analyzed by AI"},
 }
 
 var SKILLS = []Skill{
