@@ -68,19 +68,25 @@ templ BodyContent(quote string, experiences []Experince, projects []Project, ski
 						title="LinkedIn (Press L)">
 						<img src="/static/images/linkedin.svg" alt="LinkedIn" class="w-6 h-6 invert-0 dark:invert group-hover/social:invert-[1] dark:group-hover/social:invert-0 transition-all"/>
 					</a>
-					<a href="mailto:mwangikabiru21@gmail.com"
-						class="group/social relative w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-creative dark:hover:bg-creative transition-all duration-300"
-						title="Email (Press E)">
-						<img src="/static/images/gmail.svg" alt="Email" class="w-6 h-6 invert-0 dark:invert group-hover/social:invert-[1] dark:group-hover/social:invert-0 transition-all"/>
-					</a>
-				</div>
+				<a href="mailto:mwangikabiru21@gmail.com"
+					class="group/social relative w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-creative dark:hover:bg-creative transition-all duration-300"
+					title="Email (Press E)">
+					<img src="/static/images/gmail.svg" alt="Email" class="w-6 h-6 invert-0 dark:invert group-hover/social:invert-[1] dark:group-hover/social:invert-0 transition-all"/>
+				</a>
+				<a href="https://wordsbykabiru.substack.com/" target="_blank" rel="noopener noreferrer"
+					class="group/social relative w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-primary-500 dark:hover:bg-success transition-all duration-300"
+					title="Substack (Press S)">
+					<img src="/static/images/substack.svg" alt="Substack" class="w-6 h-6 invert-0 dark:invert group-hover/social:invert-[1] dark:group-hover/social:invert-0 transition-all"/>
+				</a>
+			</div>
 
-				<!-- Keyboard Hints -->
-				<p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-4 text-center">
-					Press <kbd class="px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs">G</kbd> GitHub • 
-					<kbd class="px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs">L</kbd> LinkedIn • 
-					<kbd class="px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs">E</kbd> Email
-				</p>
+			<!-- Keyboard Hints -->
+			<p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-4 text-center">
+				Press <kbd class="px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs">G</kbd> GitHub •
+				<kbd class="px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs">L</kbd> LinkedIn •
+				<kbd class="px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs">E</kbd> Email •
+				<kbd class="px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs">S</kbd> Substack
+			</p>
 
 				<!-- CTA Arrow -->
 				<div class="mt-12 animate-bounce">
@@ -230,7 +236,7 @@ templ BodyContent(quote string, experiences []Experince, projects []Project, ski
 			<div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
 				<div class="text-center md:text-left">
 					<p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
-						Built with <span class="text-creative">❤️</span> using modern web technologies
+						Built with <span class="text-creative">❤️</span> by Kabiru
 					</p>
 					<p class="text-xs text-gray-500 dark:text-gray-500">
 						Go • Fiber • Templ • HTMX • Alpine.js • Tailwind CSS
@@ -274,6 +280,9 @@ script BodyScripts() {
 				break;
 			case 'e':
 				window.location.href = 'mailto:mwangikabiru21@gmail.com?subject=Hello%20Brian!&body=I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect...';
+				break;
+			case 's':
+				window.open('https://wordsbykabiru.substack.com/', '_blank');
 				break;
 		}
 	});

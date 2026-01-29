@@ -164,7 +164,7 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 			templ_7745c5c3_Var8 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<div id=\"app\" class=\"min-h-screen bg-white dark:bg-dark-bg text-light-text dark:text-dark-text transition-colors duration-300\"><!-- Scroll Indicator Navigation --><nav class=\"scroll-dots\" x-data=\"scrollNav()\" @scroll.window=\"updateActive()\"><button @click=\"scrollToSection('hero')\" class=\"scroll-dot active\" aria-label=\"Hero section\"></button> <button @click=\"scrollToSection('about')\" class=\"scroll-dot\" aria-label=\"About section\"></button> <button @click=\"scrollToSection('experience')\" class=\"scroll-dot\" aria-label=\"Experience section\"></button> <button @click=\"scrollToSection('projects')\" class=\"scroll-dot\" aria-label=\"Projects section\"></button> <button @click=\"scrollToSection('skills')\" class=\"scroll-dot\" aria-label=\"Skills section\"></button> <button @click=\"scrollToSection('quote')\" class=\"scroll-dot\" aria-label=\"Quote section\"></button></nav><!-- Hero Section --><section id=\"hero\" class=\"min-h-screen flex flex-col items-center justify-center px-4 py-20 md:py-32\"><div class=\"flex flex-col items-center gap-8 animate-fade-in\"><!-- Profile Image --><div class=\"relative group\"><div class=\"absolute inset-0 bg-gradient-to-br from-primary-500 to-success blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-500\"></div><img src=\"/static/images/me-away.jpeg\" alt=\"Brian Mwangi\" class=\"relative w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-2 border-primary-500 dark:border-success shadow-lg dark:shadow-soft-lg-dark hover:shadow-soft-lg-dark dark:hover:shadow-glow transition-all duration-300\"></div><!-- Name & Title --><div class=\"flex flex-col items-center gap-2\"><h1 class=\"text-5xl md:text-7xl font-bold text-primary-500 dark:text-white tracking-tight\">mwangi kabiru</h1><p class=\"text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium\">Full Stack Developer & Problem Solver</p></div><!-- Social Links --><div class=\"flex gap-6 mt-4\"><a href=\"https://github.com/BrianMwangi21\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"group/social relative w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-primary-500 dark:hover:bg-success transition-all duration-300\" title=\"GitHub (Press G)\"><img src=\"/static/images/github.svg\" alt=\"GitHub\" class=\"w-6 h-6 invert-0 dark:invert group-hover/social:invert-[1] dark:group-hover/social:invert-0 transition-all\"></a> <a href=\"https://www.linkedin.com/in/brian-mwangi/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"group/social relative w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-primary-500 dark:hover:bg-success transition-all duration-300\" title=\"LinkedIn (Press L)\"><img src=\"/static/images/linkedin.svg\" alt=\"LinkedIn\" class=\"w-6 h-6 invert-0 dark:invert group-hover/social:invert-[1] dark:group-hover/social:invert-0 transition-all\"></a> <a href=\"mailto:mwangikabiru21@gmail.com\" class=\"group/social relative w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-creative dark:hover:bg-creative transition-all duration-300\" title=\"Email (Press E)\"><img src=\"/static/images/gmail.svg\" alt=\"Email\" class=\"w-6 h-6 invert-0 dark:invert group-hover/social:invert-[1] dark:group-hover/social:invert-0 transition-all\"></a></div><!-- Keyboard Hints --><p class=\"text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-4 text-center\">Press <kbd class=\"px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs\">G</kbd> GitHub •  <kbd class=\"px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs\">L</kbd> LinkedIn •  <kbd class=\"px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs\">E</kbd> Email</p><!-- CTA Arrow --><div class=\"mt-12 animate-bounce\"><svg class=\"w-6 h-6 text-primary-500 dark:text-success\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 14l-7 7m0 0l-7-7m7 7V3\"></path></svg></div></div></section><!-- About Section --><section id=\"about\" class=\"py-20 md:py-32 px-4 max-w-4xl mx-auto\"><div class=\"card-light rounded-2xl p-8 md:p-12 animate-slide-up\"><h2 class=\"text-3xl md:text-4xl font-bold text-primary-500 dark:text-white mb-6\">About Me</h2><p class=\"text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed\">I love to code. I love solving problems. I love creating. I love it all. <br><br>With experience across the full stack, I specialize in building beautiful, performant applications that solve real problems.  Whether it's crafting pixel-perfect interfaces or architecting robust backends, I bring passion and precision to every project.</p><p class=\"text-sm text-gray-500 dark:text-gray-400 mt-4 italic\">(I use Neovim btw 🤷)</p></div></section><!-- Experience Section --><section id=\"experience\" class=\"py-20 md:py-32 px-4 max-w-6xl mx-auto\"><h2 class=\"text-4xl md:text-5xl font-bold mb-12\"><span class=\"text-primary-500 dark:text-white\">Experience</span> <span class=\"text-gray-500 dark:text-gray-400\">— places that bet on me</span></h2><div class=\"grid grid-cols-1 md:grid-cols-2 gap-6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<div id=\"app\" class=\"min-h-screen bg-white dark:bg-dark-bg text-light-text dark:text-dark-text transition-colors duration-300\"><!-- Scroll Indicator Navigation --><nav class=\"scroll-dots\" x-data=\"scrollNav()\" @scroll.window=\"updateActive()\"><button @click=\"scrollToSection('hero')\" class=\"scroll-dot active\" aria-label=\"Hero section\"></button> <button @click=\"scrollToSection('about')\" class=\"scroll-dot\" aria-label=\"About section\"></button> <button @click=\"scrollToSection('experience')\" class=\"scroll-dot\" aria-label=\"Experience section\"></button> <button @click=\"scrollToSection('projects')\" class=\"scroll-dot\" aria-label=\"Projects section\"></button> <button @click=\"scrollToSection('skills')\" class=\"scroll-dot\" aria-label=\"Skills section\"></button> <button @click=\"scrollToSection('quote')\" class=\"scroll-dot\" aria-label=\"Quote section\"></button></nav><!-- Hero Section --><section id=\"hero\" class=\"min-h-screen flex flex-col items-center justify-center px-4 py-20 md:py-32\"><div class=\"flex flex-col items-center gap-8 animate-fade-in\"><!-- Profile Image --><div class=\"relative group\"><div class=\"absolute inset-0 bg-gradient-to-br from-primary-500 to-success blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-500\"></div><img src=\"/static/images/me-away.jpeg\" alt=\"Brian Mwangi\" class=\"relative w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-2 border-primary-500 dark:border-success shadow-lg dark:shadow-soft-lg-dark hover:shadow-soft-lg-dark dark:hover:shadow-glow transition-all duration-300\"></div><!-- Name & Title --><div class=\"flex flex-col items-center gap-2\"><h1 class=\"text-5xl md:text-7xl font-bold text-primary-500 dark:text-white tracking-tight\">mwangi kabiru</h1><p class=\"text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium\">Full Stack Developer & Problem Solver</p></div><!-- Social Links --><div class=\"flex gap-6 mt-4\"><a href=\"https://github.com/BrianMwangi21\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"group/social relative w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-primary-500 dark:hover:bg-success transition-all duration-300\" title=\"GitHub (Press G)\"><img src=\"/static/images/github.svg\" alt=\"GitHub\" class=\"w-6 h-6 invert-0 dark:invert group-hover/social:invert-[1] dark:group-hover/social:invert-0 transition-all\"></a> <a href=\"https://www.linkedin.com/in/brian-mwangi/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"group/social relative w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-primary-500 dark:hover:bg-success transition-all duration-300\" title=\"LinkedIn (Press L)\"><img src=\"/static/images/linkedin.svg\" alt=\"LinkedIn\" class=\"w-6 h-6 invert-0 dark:invert group-hover/social:invert-[1] dark:group-hover/social:invert-0 transition-all\"></a> <a href=\"mailto:mwangikabiru21@gmail.com\" class=\"group/social relative w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-creative dark:hover:bg-creative transition-all duration-300\" title=\"Email (Press E)\"><img src=\"/static/images/gmail.svg\" alt=\"Email\" class=\"w-6 h-6 invert-0 dark:invert group-hover/social:invert-[1] dark:group-hover/social:invert-0 transition-all\"></a> <a href=\"https://wordsbykabiru.substack.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"group/social relative w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-primary-500 dark:hover:bg-success transition-all duration-300\" title=\"Substack (Press S)\"><img src=\"/static/images/substack.svg\" alt=\"Substack\" class=\"w-6 h-6 invert-0 dark:invert group-hover/social:invert-[1] dark:group-hover/social:invert-0 transition-all\"></a></div><!-- Keyboard Hints --><p class=\"text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-4 text-center\">Press <kbd class=\"px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs\">G</kbd> GitHub • <kbd class=\"px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs\">L</kbd> LinkedIn • <kbd class=\"px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs\">E</kbd> Email • <kbd class=\"px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs\">S</kbd> Substack</p><!-- CTA Arrow --><div class=\"mt-12 animate-bounce\"><svg class=\"w-6 h-6 text-primary-500 dark:text-success\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 14l-7 7m0 0l-7-7m7 7V3\"></path></svg></div></div></section><!-- About Section --><section id=\"about\" class=\"py-20 md:py-32 px-4 max-w-4xl mx-auto\"><div class=\"card-light rounded-2xl p-8 md:p-12 animate-slide-up\"><h2 class=\"text-3xl md:text-4xl font-bold text-primary-500 dark:text-white mb-6\">About Me</h2><p class=\"text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed\">I love to code. I love solving problems. I love creating. I love it all. <br><br>With experience across the full stack, I specialize in building beautiful, performant applications that solve real problems.  Whether it's crafting pixel-perfect interfaces or architecting robust backends, I bring passion and precision to every project.</p><p class=\"text-sm text-gray-500 dark:text-gray-400 mt-4 italic\">(I use Neovim btw 🤷)</p></div></section><!-- Experience Section --><section id=\"experience\" class=\"py-20 md:py-32 px-4 max-w-6xl mx-auto\"><h2 class=\"text-4xl md:text-5xl font-bold mb-12\"><span class=\"text-primary-500 dark:text-white\">Experience</span> <span class=\"text-gray-500 dark:text-gray-400\">— places that bet on me</span></h2><div class=\"grid grid-cols-1 md:grid-cols-2 gap-6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -176,7 +176,7 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 			var templ_7745c5c3_Var9 string
 			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(experience.Title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 124, Col: 26}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 130, Col: 26}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 			if templ_7745c5c3_Err != nil {
@@ -189,7 +189,7 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 			var templ_7745c5c3_Var10 string
 			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(experience.Duration)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 127, Col: 29}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 133, Col: 29}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 			if templ_7745c5c3_Err != nil {
@@ -202,7 +202,7 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 			var templ_7745c5c3_Var11 templ.SafeURL
 			templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(experience.CompanyLink))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 133, Col: 57}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 139, Col: 57}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 			if templ_7745c5c3_Err != nil {
@@ -215,7 +215,7 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 			var templ_7745c5c3_Var12 string
 			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(experience.Company)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 135, Col: 27}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 141, Col: 27}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 			if templ_7745c5c3_Err != nil {
@@ -228,7 +228,7 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 			var templ_7745c5c3_Var13 string
 			templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(experience.Description)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 140, Col: 30}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 146, Col: 30}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 			if templ_7745c5c3_Err != nil {
@@ -246,7 +246,7 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 				var templ_7745c5c3_Var14 string
 				templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(tech)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 147, Col: 14}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 153, Col: 14}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 				if templ_7745c5c3_Err != nil {
@@ -274,7 +274,7 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 			var templ_7745c5c3_Var15 templ.SafeURL
 			templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(project.Link))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 165, Col: 42}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 171, Col: 42}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 			if templ_7745c5c3_Err != nil {
@@ -287,7 +287,7 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 			var templ_7745c5c3_Var16 string
 			templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(project.Name)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 169, Col: 21}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 175, Col: 21}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
 			if templ_7745c5c3_Err != nil {
@@ -300,7 +300,7 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 			var templ_7745c5c3_Var17 string
 			templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinStringErrs(project.Description)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 178, Col: 27}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 184, Col: 27}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
 			if templ_7745c5c3_Err != nil {
@@ -323,7 +323,7 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 			var templ_7745c5c3_Var18 string
 			templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(skill.Icon)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 195, Col: 26}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 201, Col: 26}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 			if templ_7745c5c3_Err != nil {
@@ -336,7 +336,7 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 			var templ_7745c5c3_Var19 string
 			templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(skill.Name)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 195, Col: 43}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 201, Col: 43}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
 			if templ_7745c5c3_Err != nil {
@@ -349,7 +349,7 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 			var templ_7745c5c3_Var20 string
 			templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(skill.Name)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 198, Col: 19}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 204, Col: 19}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
 			if templ_7745c5c3_Err != nil {
@@ -375,13 +375,13 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 		var templ_7745c5c3_Var21 string
 		templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinStringErrs(quote)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 215, Col: 11}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 221, Col: 11}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "</p><button hx-get=\"/api/get-quote\" hx-target=\"#quote-result\" hx-swap=\"innerHTML swap:0.3s\" class=\"btn-primary\">Get Another Quote</button></div></section><!-- Footer --><footer class=\"py-16 px-4 border-t border-gray-200 dark:border-dark-border\"><div class=\"max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8\"><div class=\"text-center md:text-left\"><p class=\"text-sm text-gray-600 dark:text-gray-400 mb-2\">Built with <span class=\"text-creative\">❤️</span> using modern web technologies</p><p class=\"text-xs text-gray-500 dark:text-gray-500\">Go • Fiber • Templ • HTMX • Alpine.js • Tailwind CSS</p></div><a href=\"https://github.com/BrianMwangi21\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sm font-semibold text-primary-500 dark:text-success hover:underline\">View on GitHub →</a></div></footer><!-- Dark Mode Toggle (absolute positioned) --><button @click=\"$el.closest('html').classList.toggle('dark'); localStorage.setItem('theme', $el.closest('html').classList.contains('dark') ? 'dark' : 'light')\" class=\"fixed bottom-6 right-6 p-3 rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-gray-200 dark:hover:bg-dark-border transition-all shadow-soft dark:shadow-soft-dark z-50\" title=\"Toggle dark mode\" aria-label=\"Toggle dark mode\"><svg class=\"w-5 h-5 text-gray-800 dark:hidden\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z\"></path></svg> <svg class=\"w-5 h-5 text-yellow-400 hidden dark:block\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path fill-rule=\"evenodd\" d=\"M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.536l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.121-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm5.657-9.193a1 1 0 00-1.414 0l-.707.707A1 1 0 005.05 13.536l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 000-1.414zM3 8a1 1 0 100-2H2a1 1 0 100 2h1z\" clip-rule=\"evenodd\"></path></svg></button></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "</p><button hx-get=\"/api/get-quote\" hx-target=\"#quote-result\" hx-swap=\"innerHTML swap:0.3s\" class=\"btn-primary\">Get Another Quote</button></div></section><!-- Footer --><footer class=\"py-16 px-4 border-t border-gray-200 dark:border-dark-border\"><div class=\"max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8\"><div class=\"text-center md:text-left\"><p class=\"text-sm text-gray-600 dark:text-gray-400 mb-2\">Built with <span class=\"text-creative\">❤️</span> by Kabiru</p><p class=\"text-xs text-gray-500 dark:text-gray-500\">Go • Fiber • Templ • HTMX • Alpine.js • Tailwind CSS</p></div><a href=\"https://github.com/BrianMwangi21\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-sm font-semibold text-primary-500 dark:text-success hover:underline\">View on GitHub →</a></div></footer><!-- Dark Mode Toggle (absolute positioned) --><button @click=\"$el.closest('html').classList.toggle('dark'); localStorage.setItem('theme', $el.closest('html').classList.contains('dark') ? 'dark' : 'light')\" class=\"fixed bottom-6 right-6 p-3 rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-gray-200 dark:hover:bg-dark-border transition-all shadow-soft dark:shadow-soft-dark z-50\" title=\"Toggle dark mode\" aria-label=\"Toggle dark mode\"><svg class=\"w-5 h-5 text-gray-800 dark:hidden\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z\"></path></svg> <svg class=\"w-5 h-5 text-yellow-400 hidden dark:block\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path fill-rule=\"evenodd\" d=\"M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.536l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.121-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm5.657-9.193a1 1 0 00-1.414 0l-.707.707A1 1 0 005.05 13.536l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 000-1.414zM3 8a1 1 0 100-2H2a1 1 0 100 2h1z\" clip-rule=\"evenodd\"></path></svg></button></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -391,8 +391,8 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 
 func BodyScripts() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_BodyScripts_c6e1`,
-		Function: `function __templ_BodyScripts_c6e1(){// Keyboard shortcuts
+		Name: `__templ_BodyScripts_f84d`,
+		Function: `function __templ_BodyScripts_f84d(){// Keyboard shortcuts
 	document.addEventListener('keydown', (e) => {
 		// Only trigger on letter key press (avoid conflicts with inputs)
 		if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
@@ -406,6 +406,9 @@ func BodyScripts() templ.ComponentScript {
 				break;
 			case 'e':
 				window.location.href = 'mailto:mwangikabiru21@gmail.com?subject=Hello%20Brian!&body=I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect...';
+				break;
+			case 's':
+				window.open('https://wordsbykabiru.substack.com/', '_blank');
 				break;
 		}
 	});
@@ -441,8 +444,8 @@ func BodyScripts() templ.ComponentScript {
 
 	window.scrollNav = scrollNav;
 }`,
-		Call:       templ.SafeScript(`__templ_BodyScripts_c6e1`),
-		CallInline: templ.SafeScriptInline(`__templ_BodyScripts_c6e1`),
+		Call:       templ.SafeScript(`__templ_BodyScripts_f84d`),
+		CallInline: templ.SafeScriptInline(`__templ_BodyScripts_f84d`),
 	}
 }
 

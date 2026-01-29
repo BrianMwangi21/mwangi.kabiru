@@ -65,28 +65,28 @@ var EXPERIENCES = []Experince{
 }
 
 var PROJECTS = []Project{
-	{Name: "anti-discover", Link: "https://anti-discover.fly.dev/", Description: "Sometimes, Discover Weekly gets boring. Get some suggestions that you would never think of!"},
-	{Name: "anti-charts", Link: "https://github.com/BrianMwangi21/anti-charts", Description: "Get the info for different crypto pairs from binance and perform analysis on it. You can also optionally make trades on Alpaca."},
-	{Name: "mwangi.kabiru", Link: "https://mwangikabiru.fly.dev/", Description: "We all need a beautiful portfolio, right ? And in HTMX and Templ, right ? I mean, look at this minimalist one."},
-	{Name: "thoughts.io", Link: "https://thoughts-io.vercel.app/", Description: "If your mind gets clouded and cluttered, sometimes you just want to see the thoughts float away."},
-	{Name: "drawless", Link: "https://drawless.fly.dev/", Description: "Play a new chess variant where you can insert random pieces to keep it going"},
-	{Name: "orders-of-peaky", Link: "https://github.com/BrianMwangi21/order-of-peaky", Description: "Get the orderbook details from Binance on your CLI and keep a synchronized local orderbook."},
-	{Name: "calorie-counter", Link: "https://github.com/BrianMwangi21/calorie-counter", Description: "If AI content is harmful calories, we are about to be a generation of obese folks. Can you keep count ?"},
-	{Name: "elimu.dev", Link: "https://elimu.dev", Description: "Your premier education support tool. Empowering both teachers and learners."},
-	{Name: "raas", Link: "https://github.com/BrianMwangi21/raas", Description: "Romance as a Service. Your very own open-source wingman!"},
-	{Name: "boardsaga", Link: "https://boardsaga.vercel.app/", Description: "Transform your chess games into captivating stories"},
-	{Name: "revealreveal", Link: "https://revealreveal.vercel.app/", Description: "Create memorable reveal moments"},
 	{Name: "analitika", Link: "https://analitika.vercel.app/", Description: "Get you game odds and bets analyzed by AI"},
+	{Name: "revealreveal", Link: "https://revealreveal.vercel.app/", Description: "Create memorable reveal moments"},
+	{Name: "boardsaga", Link: "https://boardsaga.vercel.app/", Description: "Transform your chess games into captivating stories"},
+	{Name: "raas", Link: "https://github.com/BrianMwangi21/raas", Description: "Romance as a Service. Your very own open-source wingman!"},
+	{Name: "elimu.dev", Link: "https://elimu.dev", Description: "Your premier education support tool. Empowering both teachers and learners."},
+	{Name: "calorie-counter", Link: "https://github.com/BrianMwangi21/calorie-counter", Description: "If AI content is harmful calories, we are about to be a generation of obese folks. Can you keep count ?"},
+	{Name: "orders-of-peaky", Link: "https://github.com/BrianMwangi21/order-of-peaky", Description: "Get the orderbook details from Binance on your CLI and keep a synchronized local orderbook."},
+	{Name: "drawless", Link: "https://drawless.fly.dev/", Description: "Play a new chess variant where you can insert random pieces to keep it going"},
+	{Name: "thoughts.io", Link: "https://thoughts-io.vercel.app/", Description: "If your mind gets clouded and cluttered, sometimes you just want to see the thoughts float away."},
+	{Name: "mwangi.kabiru", Link: "https://mwangikabiru.fly.dev/", Description: "We all need a beautiful portfolio, right ? And in HTMX and Templ, right ? I mean, look at this minimalist one."},
+	{Name: "anti-charts", Link: "https://github.com/BrianMwangi21/anti-charts", Description: "Get the info for different crypto pairs from binance and perform analysis on it. You can also optionally make trades on Alpaca."},
+	{Name: "anti-discover", Link: "https://anti-discover.fly.dev/", Description: "Sometimes, Discover Weekly gets boring. Get some suggestions that you would never think of!"},
 }
 
 var SKILLS = []Skill{
-	{Icon: "/static/images/go.svg", Name: "Go", Proficiency: "Expert"},
-	{Icon: "/static/images/python.svg", Name: "Python", Proficiency: "Proficient"},
+	{Icon: "/static/images/python.svg", Name: "Python", Proficiency: "Expert"},
 	{Icon: "/static/images/ts.svg", Name: "TypeScript", Proficiency: "Expert"},
-	{Icon: "/static/images/next.svg", Name: "Next.js", Proficiency: "Proficient"},
-	{Icon: "/static/images/java.svg", Name: "Java", Proficiency: "Proficient"},
+	{Icon: "/static/images/next.svg", Name: "Next.js", Proficiency: "Expert"},
+	{Icon: "/static/images/go.svg", Name: "Go", Proficiency: "Expert"},
 	{Icon: "/static/images/htmx.svg", Name: "HTMX", Proficiency: "Expert"},
 	{Icon: "/static/images/neovim.svg", Name: "Neovim", Proficiency: "Expert"},
+	{Icon: "/static/images/java.svg", Name: "Java", Proficiency: "Proficient"},
 }
 
 // Legacy LINGOS for backward compatibility if needed
