@@ -1,0 +1,18 @@
+package pages
+
+templ ScratchCard() {
+	<div class="scratch-card" data-scratch-card>
+		<div class="scratch-card-header">
+			<div class="scratch-card-badge">Task</div>
+			<p class="scratch-card-title">Scratch the message</p>
+		</div>
+		<p class="scratch-card-subtitle">Swipe to reveal the note underneath, then refresh for a new one.</p>
+		<div class="scratch-stage" data-scratch-stage>
+			<div class="scratch-message" data-scratch-message aria-live="polite"></div>
+			<canvas class="scratch-canvas" data-scratch-canvas></canvas>
+		</div>
+		<div class="scratch-actions">
+			<button class="btn-primary" data-scratch-refresh type="button">Refresh message</button>
+		</div>
+	</div>
+}
