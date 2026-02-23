@@ -118,6 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
     'You are a beautiful human being for real. You make ordinary days feel like a soft victory.',
     "Every step you take, I'm rooting for you. Loud in the big moments and steady in the in-between ones.",
     'Compared to others, they are candlelights to your sun. Warm, bright, and impossible to ignore.',
+    "Your smile has this way of settling the room. It's the first thing I look for when the world feels heavy.",
+    "You don't just grow—you bloom with intention. Every year, you become more yourself, and it's beautiful to witness.",
+    "In a world of noise, you're the quiet certainty I return to. Thank you for being home in human form.",
+    'You carry your softness like armor—not to keep people out, but to protect the beautiful thing you are. That strength humbles me.',
+    'Whatever chapters come next, I want to be in the margins, cheering you on. Your story is my favorite one to watch unfold.',
+    "The kindness you give doesn't end with you—it travels, touching people you'll never meet. You're changing the world in invisible ways.",
+    'If souls were constellations, yours would be the one everyone navigates by. Bright, constant, and impossible to forget.',
   ]
 
   const readStored = () => {
