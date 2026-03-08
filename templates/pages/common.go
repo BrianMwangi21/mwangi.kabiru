@@ -65,11 +65,12 @@ var EXPERIENCES = []Experince{
 }
 
 var PROJECTS = []Project{
+	{Name: "elimu.dev", Link: "https://elimu.dev", Description: "AI Study Tools: From Scattered Notes to Exam Confidence | ELIMU"},
 	{Name: "analitika", Link: "https://analitika.vercel.app/", Description: "Get you game odds and bets analyzed by AI"},
 	{Name: "revealreveal", Link: "https://revealreveal.vercel.app/", Description: "Create memorable reveal moments"},
 	{Name: "boardsaga", Link: "https://boardsaga.vercel.app/", Description: "Transform your chess games into captivating stories"},
 	{Name: "raas", Link: "https://github.com/BrianMwangi21/raas", Description: "Romance as a Service. Your very own open-source wingman!"},
-	{Name: "elimu.dev", Link: "https://elimu.dev", Description: "Your premier education support tool. Empowering both teachers and learners."},
+	{Name: "tasteprint", Link: "https://github.com/BrianMwangi21/tasteprint", Description: "What's your taste like ?"},
 	{Name: "calorie-counter", Link: "https://github.com/BrianMwangi21/calorie-counter", Description: "If AI content is harmful calories, we are about to be a generation of obese folks. Can you keep count ?"},
 	{Name: "orders-of-peaky", Link: "https://github.com/BrianMwangi21/order-of-peaky", Description: "Get the orderbook details from Binance on your CLI and keep a synchronized local orderbook."},
 	{Name: "drawless", Link: "https://drawless.fly.dev/", Description: "Play a new chess variant where you can insert random pieces to keep it going"},
