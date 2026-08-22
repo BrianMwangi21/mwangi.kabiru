@@ -19,8 +19,8 @@ func getRandomQuote() string {
 
 func indexViewHandler(c *fiber.Ctx) error {
 	metaTags := pages.MetaTags(
-		"mwangi.kabiru",
-		"Allow me to reintroduce myself!",
+		"mwangi kabiru, full stack developer, go, exhibit 2087",
+		"EXHIBIT 2087: THE DEVELOPER. A retrospective exhibition on the life and works of Brian Mwangi Kabiru, software maker of the early GitHub era. Admission free.",
 	)
 
 	quote := getRandomQuote()
@@ -38,7 +38,7 @@ func indexViewHandler(c *fiber.Ctx) error {
 
 func paigeHandler(c *fiber.Ctx) error {
 	metaTags := pages.MetaTags(
-		"mwangi.kabiru",
+		"mwangi kabiru",
 		"Allow me to reintroduce myself!",
 	)
 

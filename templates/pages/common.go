@@ -36,15 +36,7 @@ var EXPERIENCES = []Experince{
 		Title:        "Frontend Developer",
 		Description:  "Improved Atlys UI/UX for both web and mobile platforms for the B2C product, resulting in increased user satisfaction and engagement. Helped migrate the integral blog section to Prismic CMS and optimized for SEO and speed.",
 		Duration:     "Sep 2022 - Oct 2023",
-		Technologies: []string{"Next.js", "Python", "Supabase", "Prismic CRM", "Tailwind CSS"},
-	},
-	{
-		Company:      "Atlys",
-		CompanyLink:  "https://www.atlys.com/",
-		Title:        "Frontend Developer",
-		Description:  "Improved Atlys UI/UX for both web and mobile platforms for the B2C product, resulting in increased user satisfaction and engagement. Helped migrate the integral blog section to Prismic CMS and optimized for SEO and speed.",
-		Duration:     "Sep 2022 - Oct 2023",
-		Technologies: []string{"React", "Next.js", "TypeScript", "Tailwind CSS", "Prismic CMS"},
+		Technologies: []string{"Next.js", "Python", "Supabase", "Prismic CRM", "Tailwind CSS", "React", "TypeScript"},
 	},
 	{
 		Company:      "Azenia Technology",

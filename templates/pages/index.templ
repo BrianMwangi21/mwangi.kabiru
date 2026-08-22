@@ -1,18 +1,16 @@
 package pages
 
-templ badgeForProficiency(proficiency string) {
+import (
+	"fmt"
+)
+
+templ conditionFor(proficiency string) {
 	if proficiency == "Expert" {
-		<span class="inline-block mt-2 badge badge-success">
-			{proficiency}
-		</span>
+		<span class="condition pristine">Pristine</span>
 	} else if proficiency == "Proficient" {
-		<span class="inline-block mt-2 badge badge-creative">
-			{proficiency}
-		</span>
+		<span class="condition weathered">Weathered</span>
 	} else {
-		<span class="inline-block mt-2 badge badge-proficiency">
-			{proficiency}
-		</span>
+		<span class="condition fragmentary">Fragmentary</span>
 	}
 }
 
@@ -22,299 +20,251 @@ templ MetaTags(keywords, description string) {
 }
 
 templ BodyContent(quote string, experiences []Experince, projects []Project, skills []Skill) {
-	<div id="app" class="min-h-screen bg-white dark:bg-dark-bg text-light-text dark:text-dark-text transition-colors duration-300">
-		<!-- Scroll Indicator Navigation -->
+	<div id="app" class="min-h-screen">
+		<div class="grain" aria-hidden="true"></div>
+		<div class="spotlight" aria-hidden="true"></div>
+
+		<!-- Hall directory -->
 		<nav class="scroll-dots" x-data="scrollNav()" @scroll.window="updateActive()">
-			<button @click="scrollToSection('hero')" class="scroll-dot active" aria-label="Hero section"></button>
-			<button @click="scrollToSection('about')" class="scroll-dot" aria-label="About section"></button>
-			<button @click="scrollToSection('experience')" class="scroll-dot" aria-label="Experience section"></button>
-			<button @click="scrollToSection('projects')" class="scroll-dot" aria-label="Projects section"></button>
-			<button @click="scrollToSection('skills')" class="scroll-dot" aria-label="Skills section"></button>
-			<button @click="scrollToSection('quote')" class="scroll-dot" aria-label="Quote section"></button>
+			<button @click="scrollToSection('hero')" class="scroll-dot active" aria-label="Entry hall">✦</button>
+			<button @click="scrollToSection('portrait')" class="scroll-dot" aria-label="Hall I — The Portrait">I</button>
+			<button @click="scrollToSection('strata')" class="scroll-dot" aria-label="Hall II — Employment Strata">II</button>
+			<button @click="scrollToSection('relics')" class="scroll-dot" aria-label="Hall III — The Relics">III</button>
+			<button @click="scrollToSection('tools')" class="scroll-dot" aria-label="Hall IV — Tool Assemblage">IV</button>
+			<button @click="scrollToSection('corpus')" class="scroll-dot" aria-label="Hall V — Fragment Corpus">V</button>
 		</nav>
 
-		<!-- Hero Section -->
-		<section id="hero" class="min-h-screen flex flex-col items-center justify-center px-4 py-20 md:py-32">
-			<div class="flex flex-col items-center gap-8 animate-fade-in">
-				<!-- Profile Image -->
-				<div class="relative group">
-					<div class="absolute inset-0 bg-gradient-to-br from-primary-500 to-success blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
-					<img 
-						src="/static/images/me-away.jpeg" 
-						alt="Brian Mwangi" 
-						class="relative w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-2 border-primary-500 dark:border-success shadow-lg dark:shadow-soft-lg-dark hover:shadow-soft-lg-dark dark:hover:shadow-glow transition-all duration-300"
-					/>
-				</div>
+		<!-- Entry facade -->
+		<section id="hero" class="hall entry-hall">
+			<p class="archive-overline">The National Archive · Wing C · Est. 2087</p>
 
-				<!-- Name & Title -->
-				<div class="flex flex-col items-center gap-2">
-					<h1 class="text-5xl md:text-7xl font-bold text-primary-500 dark:text-white tracking-tight">
-						mwangi kabiru
-					</h1>
-					<p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium">
-						Full Stack Developer & Problem Solver
-					</p>
-				</div>
-
-				<!-- Social Links -->
-				<div class="flex gap-6 mt-4">
-					<a href="https://github.com/BrianMwangi21" target="_blank" rel="noopener noreferrer" 
-						class="group/social relative w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-primary-500 dark:hover:bg-success transition-all duration-300"
-						title="GitHub (Press G)">
-						<img src="/static/images/github.svg" alt="GitHub" class="w-6 h-6 invert-0 dark:invert group-hover/social:invert-[1] dark:group-hover/social:invert-0 transition-all"/>
-					</a>
-					<a href="https://www.linkedin.com/in/brian-mwangi/" target="_blank" rel="noopener noreferrer"
-						class="group/social relative w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-primary-500 dark:hover:bg-success transition-all duration-300"
-						title="LinkedIn (Press L)">
-						<img src="/static/images/linkedin.svg" alt="LinkedIn" class="w-6 h-6 invert-0 dark:invert group-hover/social:invert-[1] dark:group-hover/social:invert-0 transition-all"/>
-					</a>
-				<a href="mailto:mwangikabiru21@gmail.com"
-					class="group/social relative w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-creative dark:hover:bg-creative transition-all duration-300"
-					title="Email (Press E)">
-					<img src="/static/images/gmail.svg" alt="Email" class="w-6 h-6 invert-0 dark:invert group-hover/social:invert-[1] dark:group-hover/social:invert-0 transition-all"/>
-				</a>
-				<a href="https://wordsbykabiru.substack.com/" target="_blank" rel="noopener noreferrer"
-					class="group/social relative w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-primary-500 dark:hover:bg-success transition-all duration-300"
-					title="Substack (Press S)">
-					<img src="/static/images/substack.svg" alt="Substack" class="w-6 h-6 invert-0 dark:invert group-hover/social:invert-[1] dark:group-hover/social:invert-0 transition-all"/>
-				</a>
+			<div class="ticket">
+				<span class="admit">Admit One</span> — Exhibition: The Developer
 			</div>
 
-			<!-- Keyboard Hints -->
-			<p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-4 text-center">
-				Press <kbd class="px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs">G</kbd> GitHub •
-				<kbd class="px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs">L</kbd> LinkedIn •
-				<kbd class="px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs">E</kbd> Email •
-				<kbd class="px-2 py-1 rounded bg-gray-200 dark:bg-dark-card font-mono text-xs">S</kbd> Substack
-			</p>
+			<h1 class="entry-name">mwangi <span class="last">kabiru</span></h1>
 
-				<!-- CTA Arrow -->
-				<div class="mt-12 animate-bounce">
-					<svg class="w-6 h-6 text-primary-500 dark:text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-					</svg>
-				</div>
+			<p class="entry-role">Full-Stack Developer &amp; Problem Solver</p>
+
+			<div class="placard entry-placard">
+				A retrospective study of <strong>Brian Mwangi Kabiru</strong>, software maker of the early GitHub era.
+			Born Nairobi. Worked primarily in <strong>Go</strong> and <strong>TypeScript</strong>. Subject appears productive.
 			</div>
+
+			<div class="channel-keys">
+				<span><kbd>G</kbd> GitHub</span>
+				<span><kbd>L</kbd> LinkedIn</span>
+				<span><kbd>E</kbd> Email</span>
+				<span><kbd>S</kbd> Substack</span>
+			</div>
+
+			<a href="#portrait" class="proceed-cue" style="text-decoration:none;color:inherit;">
+				Proceed to Hall I
+				<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+				</svg>
+			</a>
 		</section>
 
-		<!-- About Section -->
-		<section id="about" class="py-20 md:py-32 px-4 max-w-4xl mx-auto">
-			<div class="card-light rounded-2xl p-8 md:p-12 animate-slide-up">
-				<h2 class="text-3xl md:text-4xl font-bold text-primary-500 dark:text-white mb-6">
-					About Me
-				</h2>
-				<p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
-					I love to code. I love solving problems. I love creating. I love it all. <br/><br/>
-					With experience across the full stack, I specialize in building beautiful, performant applications that solve real problems. 
-					Whether it's crafting pixel-perfect interfaces or architecting robust backends, I bring passion and precision to every project.
-				</p>
-				<p class="text-sm text-gray-500 dark:text-gray-400 mt-4 italic">
-					(I use Neovim btw 🤷)
-				</p>
-			</div>
-		</section>
-
-		<!-- Experience Section -->
-		<section id="experience" class="py-20 md:py-32 px-4 max-w-6xl mx-auto">
-			<h2 class="text-4xl md:text-5xl font-bold mb-12">
-				<span class="text-primary-500 dark:text-white">Experience</span>
-				<span class="text-gray-500 dark:text-gray-400"> — places that bet on me</span>
-			</h2>
-
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-				for _, experience := range experiences {
-					<div class="card-light rounded-xl p-6 md:p-8 group/card">
-						<div class="flex items-start justify-between mb-4">
-							<div>
-								<h3 class="text-xl md:text-2xl font-bold text-primary-500 dark:text-white group-hover/card:text-success transition-colors">
-									{experience.Title}
-								</h3>
-								<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-									{experience.Duration}
-								</p>
-							</div>
-						</div>
-
-						<p class="text-base md:text-lg mb-4">
-							at <a href={ templ.SafeURL(experience.CompanyLink) } target="_blank" rel="noopener noreferrer" 
-								class="font-semibold text-primary-500 dark:text-success hover:underline">
-								{experience.Company}
-							</a>
-						</p>
-
-						<p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-							{experience.Description}
-						</p>
-
-						<!-- Tech Badges -->
-						<div class="flex flex-wrap gap-2">
-							for _, tech := range experience.Technologies {
-								<span class="badge badge-tech dark:badge-tech text-xs">
-									{tech}
-								</span>
-							}
-						</div>
+		<!-- Hall I — The Portrait -->
+		<section id="portrait" class="hall">
+			<div class="hall-inner">
+				<header class="hall-header">
+					<div class="hall-numeral">
+						<span class="roman">I</span>
+						<span class="rule"></span>
 					</div>
-				}
+					<h2 class="hall-title">The Portrait</h2>
+				</header>
+
+				<div class="portrait-stage">
+					<div class="portrait-frame">
+						<img src="/static/images/me-away.jpeg" alt="Brian Mwangi Kabiru — the subject"/>
+						<div class="portrait-glass"></div>
+					</div>
+					<div class="portrait-plaque">
+						<span class="fig">Fig. 1 — The subject</span>
+						One of the few surviving portraits predating the Feed Collapse.
+						Pigment on silicon. Photographed away from headquarters — a rarity.
+						Gift of the subject himself, who insisted on this frame.
+					</div>
+				</div>
 			</div>
 		</section>
 
-		<!-- Projects Section -->
-		<section id="projects" class="py-20 md:py-32 px-4 max-w-6xl mx-auto">
-			<h2 class="text-4xl md:text-5xl font-bold mb-12">
-				<span class="text-primary-500 dark:text-white">Projects</span>
-				<span class="text-gray-500 dark:text-gray-400"> — where my passion keeps burning</span>
-			</h2>
+		<!-- Hall II — Employment Strata -->
+		<section id="strata" class="hall">
+			<div class="hall-inner">
+				<header class="hall-header">
+					<div class="hall-numeral">
+						<span class="roman">II</span>
+						<span class="rule"></span>
+					</div>
+					<h2 class="hall-title">Employment Strata</h2>
+					<p class="hall-intro">
+						Five institutions housed the subject between 2020 and the present.
+						Excavation reveals the following layers, newest nearest the surface.
+					</p>
+				</header>
 
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-				for _, project := range projects {
-					<a href={ templ.SafeURL(project.Link) } target="_blank" rel="noopener noreferrer"
-						class="card-light rounded-xl p-6 md:p-8 group/card hover:border-success dark:hover:border-creative cursor-pointer block">
-						<div class="flex items-start justify-between mb-3">
-							<h3 class="text-xl md:text-2xl font-bold text-primary-500 dark:text-white group-hover/card:text-success dark:group-hover/card:text-creative transition-colors">
-								{project.Name}
-							</h3>
-							<svg class="w-5 h-5 text-gray-400 group-hover/card:text-success dark:group-hover/card:text-creative transition-all transform group-hover/card:translate-x-1" 
-								fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-							</svg>
-						</div>
-
-						<p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-							{project.Description}
-						</p>
-					</a>
-				}
-			</div>
-		</section>
-
-		<!-- Skills Section -->
-		<section id="skills" class="py-20 md:py-32 px-4 max-w-6xl mx-auto">
-			<h2 class="text-4xl md:text-5xl font-bold mb-12">
-				<span class="text-primary-500 dark:text-white">Skills</span>
-				<span class="text-gray-500 dark:text-gray-400"> — my preferred arsenal</span>
-			</h2>
-
-			<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-				for _, skill := range skills {
-					<div class="card-light rounded-xl p-6 flex flex-col items-center gap-4 group/skill">
-						<img src={skill.Icon} alt={skill.Name} class="w-20 h-20 dark:invert transition-transform group-hover/skill:scale-110"/>
-						<div class="text-center">
-							<p class="font-semibold text-lg text-primary-500 dark:text-white">
-								{skill.Name}
+				<div class="strata-rail">
+					for i, experience := range experiences {
+						<article class="stratum">
+							<p class="stratum-depth">
+								Stratum { fmt.Sprintf("%d", i+1) } · <span class="metres">{ fmt.Sprintf("−%dm", (i+1)*2) }</span> · { experience.Duration }
 							</p>
-							@badgeForProficiency(skill.Proficiency)
-						</div>
-					</div>
-				}
+							<div class="stratum-card">
+								<div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-1">
+									<h3>{ experience.Title }</h3>
+									<span class="tenure">{ experience.Duration }</span>
+								</div>
+								<a href={ templ.SafeURL(experience.CompanyLink) } target="_blank" rel="noopener noreferrer" class="institution">
+									{ experience.Company }
+								</a>
+								<p class="desc">{ experience.Description }</p>
+								<div class="tooling">
+									for _, tech := range experience.Technologies {
+										<span>{ tech }</span>
+									}
+								</div>
+							</div>
+						</article>
+					}
+				</div>
 			</div>
 		</section>
 
-		<!-- Quote Section -->
-		<section id="quote" class="py-20 md:py-32 px-4 max-w-4xl mx-auto">
-			<div class="card-light rounded-2xl p-8 md:p-12 text-center">
-				<h2 class="text-3xl md:text-4xl font-bold text-primary-500 dark:text-white mb-8">
-					Quote of the Day
-				</h2>
-				
-				<p id="quote-result" class="text-xl md:text-2xl italic text-gray-700 dark:text-gray-300 leading-relaxed mb-8 transition-opacity duration-300">
-					{quote}
+		<!-- Hall III — The Relics -->
+		<section id="relics" class="hall">
+			<div class="hall-inner">
+				<header class="hall-header">
+					<div class="hall-numeral">
+						<span class="roman">III</span>
+						<span class="rule"></span>
+					</div>
+					<h2 class="hall-title">The Relics</h2>
+					<p class="hall-intro">
+						Artifacts recovered intact from the subject's repositories.
+						Several remain operational. Scholars remain baffled.
+					</p>
+				</header>
+
+				<div class="vitrine-grid">
+					for i, project := range projects {
+						<a href={ templ.SafeURL(project.Link) } target="_blank" rel="noopener noreferrer" class="vitrine">
+							<span class="stamp">Do Not Touch</span>
+							<span class="relic-no">Relic № { fmt.Sprintf("%02d", i+1) }</span>
+							<h3>
+								{ project.Name }
+								<span class="arrow">↗</span>
+							</h3>
+							<p>{ project.Description }</p>
+							<span class="view-request">Request viewing ↗</span>
+						</a>
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Hall IV — Tool Assemblage -->
+		<section id="tools" class="hall">
+			<div class="hall-inner">
+				<header class="hall-header">
+					<div class="hall-numeral">
+						<span class="roman">IV</span>
+						<span class="rule"></span>
+					</div>
+					<h2 class="hall-title">Tool Assemblage</h2>
+					<p class="hall-intro">
+						Seven instruments were recovered near the workstation.
+						Condition assessed at intake by the conservation team.
+					</p>
+				</header>
+
+				<div class="assemblage-grid">
+					for _, skill := range skills {
+						<div class="instrument">
+							<img src={ skill.Icon } alt={ skill.Name }/>
+							<span class="name">{ skill.Name }</span>
+							@conditionFor(skill.Proficiency)
+						</div>
+					}
+				</div>
+
+				<div class="placard assemblage-note">
+					<strong>Note.</strong> The Neovim instrument shows unusually heavy wear.
+					Scholars still debate its ritual function.
+				</div>
+			</div>
+		</section>
+
+		<!-- Hall V — The Fragment Corpus -->
+		<section id="corpus" class="hall">
+			<div class="hall-inner">
+				<header class="hall-header">
+					<div class="hall-numeral">
+						<span class="roman">V</span>
+						<span class="rule"></span>
+					</div>
+					<h2 class="hall-title">The Fragment Corpus</h2>
+					<p class="hall-intro">
+						Over fifty short texts were recovered from the subject's device.
+						Purpose unknown. Possibly scripture.
+					</p>
+				</header>
+
+				<div class="corpus-stage">
+					<p id="fragment-result" class="fragment-quote">{ quote }</p>
+					<button
+						hx-get="/api/get-quote"
+						hx-target="#fragment-result"
+						hx-swap="innerHTML swap:300ms"
+						class="archive-btn">
+						Translate Another Fragment
+					</button>
+					<p class="corpus-meta">Fragments transmitted on request · via HTMX, a protocol of the period</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Exit / gift shop -->
+		<footer class="exit-hall">
+			<div class="exit-inner">
+				<p class="archive-overline">You are leaving the exhibition</p>
+
+				<div class="exit-channels">
+					<a href="https://github.com/BrianMwangi21" target="_blank" rel="noopener noreferrer" title="GitHub — press G" aria-label="GitHub">
+						<img src="/static/images/github.svg" alt="GitHub"/>
+					</a>
+					<a href="https://www.linkedin.com/in/brian-mwangi/" target="_blank" rel="noopener noreferrer" title="LinkedIn — press L" aria-label="LinkedIn">
+						<img src="/static/images/linkedin.svg" alt="LinkedIn"/>
+					</a>
+					<a href="mailto:mwangikabiru21@gmail.com" title="Email — press E" aria-label="Email">
+						<img src="/static/images/gmail.svg" alt="Email"/>
+					</a>
+					<a href="https://wordsbykabiru.substack.com/" target="_blank" rel="noopener noreferrer" title="Substack — press S" aria-label="Substack">
+						<img src="/static/images/substack.svg" alt="Substack"/>
+					</a>
+				</div>
+
+				<p class="text-sm" style="color:var(--ink-dim);font-size:0.8rem;">
+					Curated by B. Mwangi Kabiru, who insists he had help.
 				</p>
 
-				<button 
-					hx-get="/api/get-quote" 
-					hx-target="#quote-result"
-					hx-swap="innerHTML swap:0.3s"
-					class="btn-primary">
-					Get Another Quote
-				</button>
-			</div>
-		</section>
+				<p class="conservation">
+					Go · Fiber · Templ · HTMX · Alpine.js · Tailwind CSS<br/>
+					Tools of the era, preserved in working order
+				</p>
 
-		<!-- Footer -->
-		<footer class="py-16 px-4 border-t border-gray-200 dark:border-dark-border">
-			<div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-				<div class="text-center md:text-left">
-					<p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
-						Built with <span class="text-creative">❤️</span> by Kabiru
-					</p>
-					<p class="text-xs text-gray-500 dark:text-gray-500">
-						Go • Fiber • Templ • HTMX • Alpine.js • Tailwind CSS
-					</p>
-				</div>
 				<a href="https://github.com/BrianMwangi21" target="_blank" rel="noopener noreferrer"
-					class="text-sm font-semibold text-primary-500 dark:text-success hover:underline">
-					View on GitHub →
+					class="archive-btn" style="text-decoration:none;display:inline-block;">
+					View the archive ↗
 				</a>
 			</div>
 		</footer>
 
-		<!-- Dark Mode Toggle (absolute positioned) -->
-		<button 
-			@click="$el.closest('html').classList.toggle('dark'); localStorage.setItem('theme', $el.closest('html').classList.contains('dark') ? 'dark' : 'light')"
-			class="fixed bottom-6 right-6 p-3 rounded-lg bg-gray-100 dark:bg-dark-card hover:bg-gray-200 dark:hover:bg-dark-border transition-all shadow-soft dark:shadow-soft-dark z-50"
-			title="Toggle dark mode"
-			aria-label="Toggle dark mode">
-			<svg class="w-5 h-5 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
-				<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-			</svg>
-			<svg class="w-5 h-5 text-yellow-400 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
-				<path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.536l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.121-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm5.657-9.193a1 1 0 00-1.414 0l-.707.707A1 1 0 005.05 13.536l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 000-1.414zM3 8a1 1 0 100-2H2a1 1 0 100 2h1z" clip-rule="evenodd"></path>
-			</svg>
+		<button data-mode-toggle class="mode-toggle" title="Toggle day mode (staff only)">
+			Day Mode — Staff Only
 		</button>
 	</div>
-}
-
-script BodyScripts() {
-	// Keyboard shortcuts
-	document.addEventListener('keydown', (e) => {
-		// Only trigger on letter key press (avoid conflicts with inputs)
-		if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-		
-		switch(e.key.toLowerCase()) {
-			case 'g':
-				window.open('https://github.com/BrianMwangi21', '_blank');
-				break;
-			case 'l':
-				window.open('https://www.linkedin.com/in/brian-mwangi/', '_blank');
-				break;
-			case 'e':
-				window.location.href = 'mailto:mwangikabiru21@gmail.com?subject=Hello%20Brian!&body=I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect...';
-				break;
-			case 's':
-				window.open('https://wordsbykabiru.substack.com/', '_blank');
-				break;
-		}
-	});
-
-	// Scroll navigation
-	function scrollNav() {
-		return {
-			updateActive() {
-				const sections = ['hero', 'about', 'experience', 'projects', 'skills', 'quote'];
-				const scrollPosition = window.scrollY + window.innerHeight / 3;
-				
-				sections.forEach((id, index) => {
-					const section = document.getElementById(id);
-					if (section) {
-						const { offsetTop, offsetHeight } = section;
-						const dots = document.querySelectorAll('.scroll-dot');
-						
-						if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-							dots.forEach(dot => dot.classList.remove('active'));
-							if (dots[index]) dots[index].classList.add('active');
-						}
-					}
-				});
-			},
-			scrollToSection(id) {
-				const section = document.getElementById(id);
-				if (section) {
-					section.scrollIntoView({ behavior: 'smooth' });
-				}
-			}
-		};
-	}
-
-	window.scrollNav = scrollNav;
 }

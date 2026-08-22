@@ -1,18 +1,16 @@
-// ==================== CRITICAL: Initialize dark mode BEFORE imports ====================
+// ==================== CRITICAL: Initialize exhibition lighting BEFORE imports ====================
+// Night gallery is the default. Day mode ("staff only") is opt-in via localStorage.
 ;(function () {
   const html = document.documentElement
-  const isDark =
-    localStorage.getItem('theme') === 'dark' ||
-    (!localStorage.getItem('theme') &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches)
+  const isDay = localStorage.getItem('theme') === 'day'
 
-  if (isDark) {
-    html.classList.add('dark')
+  if (isDay) {
+    html.classList.add('day')
   } else {
-    html.classList.remove('dark')
+    html.classList.remove('day')
   }
 
-  window.__isDarkMode = isDark
+  window.__isDayMode = isDay
 })()
 
 // ==================== Imports ====================
@@ -22,17 +20,17 @@ import Alpine from 'alpinejs'
 // Add Alpine instance to window object.
 window.Alpine = Alpine
 
-// ==================== Scroll navigation ====================
+// ==================== Scroll navigation (hall directory) ====================
 window.scrollNav = function () {
   return {
     updateActive() {
       const sections = [
         'hero',
-        'about',
-        'experience',
-        'projects',
-        'skills',
-        'quote',
+        'portrait',
+        'strata',
+        'relics',
+        'tools',
+        'corpus',
       ]
       const scrollPosition = window.scrollY + window.innerHeight / 3
 
@@ -61,7 +59,35 @@ window.scrollNav = function () {
   }
 }
 
-// ==================== Keyboard shortcuts ====================
+// ==================== Cursor spotlight ====================
+document.addEventListener('mousemove', (e) => {
+  document.documentElement.style.setProperty('--mx', `${e.clientX}px`)
+  document.documentElement.style.setProperty('--my', `${e.clientY}px`)
+})
+
+// ==================== Hall lighting ====================
+document.addEventListener('DOMContentLoaded', () => {
+  const halls = document.querySelectorAll('.hall')
+  if (!halls.length) return
+
+  const lightHall = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('lit')
+        observer.unobserve(entry.target)
+      }
+    })
+  }
+
+  const observer = new IntersectionObserver(lightHall, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -8% 0px',
+  })
+
+  halls.forEach((hall) => observer.observe(hall))
+})
+
+// ==================== Communication channels (keyboard) ====================
 document.addEventListener('keydown', (e) => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return
 
@@ -76,20 +102,38 @@ document.addEventListener('keydown', (e) => {
       window.location.href =
         'mailto:mwangikabiru21@gmail.com?subject=Hello%20Brian!&body=I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect...'
       break
+    case 's':
+      window.open('https://wordsbykabiru.substack.com/', '_blank')
+      break
   }
 })
 
-// ==================== Dark mode toggle ====================
+// ==================== Day mode toggle ("staff only") ====================
+const MODE_LABELS = {
+  day: 'Night Mode — Public Hours',
+  night: 'Day Mode — Staff Only',
+}
+
+function syncModeToggle() {
+  const button = document.querySelector('[data-mode-toggle]')
+  if (!button) return
+  const isDay = document.documentElement.classList.contains('day')
+  button.textContent = MODE_LABELS[isDay ? 'day' : 'night']
+  button.title = isDay
+    ? 'Return to night mode (public hours)'
+    : 'Toggle day mode (staff only)'
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  const darkModeButton = document.querySelector('[title="Toggle dark mode"]')
-  if (darkModeButton) {
-    darkModeButton.addEventListener('click', () => {
+  syncModeToggle()
+
+  const modeButton = document.querySelector('[data-mode-toggle]')
+  if (modeButton) {
+    modeButton.addEventListener('click', () => {
       const html = document.documentElement
-      html.classList.toggle('dark')
-      localStorage.setItem(
-        'theme',
-        html.classList.contains('dark') ? 'dark' : 'light'
-      )
+      const isDay = html.classList.toggle('day')
+      localStorage.setItem('theme', isDay ? 'day' : 'night')
+      syncModeToggle()
     })
   }
 })
