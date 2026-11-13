@@ -6,7 +6,7 @@ tmp_dir = "tmp"
 
 [build]
 pre_cmd = ["npm run build"]
-cmd = "go run github.com/a-h/templ/cmd/templ@latest generate && go build -o ./tmp/gowebly_fiber ."
+cmd = "go run github.com/a-h/templ/cmd/templ@v0.3.1020 generate && go build -o ./tmp/gowebly_fiber ."
 bin = "tmp/gowebly_fiber"
 include_ext = ["go", "templ", "html", "json", "js", "ts", "css", "scss"]
 exclude_dir = [".parcel-cache", "bin", "dist", "node_modules", "static", "tmp", "tests", "vendor"]

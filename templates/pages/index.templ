@@ -1,270 +1,73 @@
 package pages
 
-import (
-	"fmt"
-)
-
-templ conditionFor(proficiency string) {
-	if proficiency == "Expert" {
-		<span class="condition pristine">Pristine</span>
-	} else if proficiency == "Proficient" {
-		<span class="condition weathered">Weathered</span>
-	} else {
-		<span class="condition fragmentary">Fragmentary</span>
-	}
-}
-
 templ MetaTags(keywords, description string) {
 	<meta name="keywords" content={ keywords }/>
 	<meta name="description" content={ description }/>
 }
 
-templ BodyContent(quote string, experiences []Experince, projects []Project, skills []Skill) {
-	<div id="app" class="min-h-screen">
-		<div class="grain" aria-hidden="true"></div>
-		<div class="spotlight" aria-hidden="true"></div>
-
-		<!-- Hall directory -->
-		<nav class="scroll-dots" x-data="scrollNav()" @scroll.window="updateActive()">
-			<button @click="scrollToSection('hero')" class="scroll-dot active" aria-label="Entry hall">✦</button>
-			<button @click="scrollToSection('portrait')" class="scroll-dot" aria-label="Hall I — The Portrait">I</button>
-			<button @click="scrollToSection('strata')" class="scroll-dot" aria-label="Hall II — Employment Strata">II</button>
-			<button @click="scrollToSection('relics')" class="scroll-dot" aria-label="Hall III — The Relics">III</button>
-			<button @click="scrollToSection('tools')" class="scroll-dot" aria-label="Hall IV — Tool Assemblage">IV</button>
-			<button @click="scrollToSection('corpus')" class="scroll-dot" aria-label="Hall V — Fragment Corpus">V</button>
-		</nav>
-
-		<!-- Entry facade -->
-		<section id="hero" class="hall entry-hall">
-			<p class="archive-overline">The National Archive · Wing C · Est. 2087</p>
-
-			<div class="ticket">
-				<span class="admit">Admit One</span> — Exhibition: The Developer
+templ TerminalContent() {
+	<div id="app" class="term-shell" x-data="terminal()" @click="maybeFocus($event)">
+		<div class="term-window">
+			<div class="term-titlebar">
+				<span class="term-dots" aria-hidden="true">
+					<span class="term-dot dot-red"></span>
+					<span class="term-dot dot-yellow"></span>
+					<span class="term-dot dot-green"></span>
+				</span>
+				<span class="term-title">visitor&#64;mwangi.kabiru: ~</span>
+				<span class="term-proto">ssh · htmx</span>
 			</div>
 
-			<h1 class="entry-name">mwangi <span class="last">kabiru</span></h1>
-
-			<p class="entry-role">Full-Stack Developer &amp; Problem Solver</p>
-
-			<div class="placard entry-placard">
-				A retrospective study of <strong>Brian Mwangi Kabiru</strong>, software maker of the early GitHub era.
-			Born Nairobi. Worked primarily in <strong>Go</strong> and <strong>TypeScript</strong>. Subject appears productive.
-			</div>
-
-			<div class="channel-keys">
-				<span><kbd>G</kbd> GitHub</span>
-				<span><kbd>L</kbd> LinkedIn</span>
-				<span><kbd>E</kbd> Email</span>
-				<span><kbd>S</kbd> Substack</span>
-			</div>
-
-			<a href="#portrait" class="proceed-cue" style="text-decoration:none;color:inherit;">
-				Proceed to Hall I
-				<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-				</svg>
-			</a>
-		</section>
-
-		<!-- Hall I — The Portrait -->
-		<section id="portrait" class="hall">
-			<div class="hall-inner">
-				<header class="hall-header">
-					<div class="hall-numeral">
-						<span class="roman">I</span>
-						<span class="rule"></span>
+			<div class="term-body">
+				<div id="scrollback" x-ref="scrollback">
+					<div class="boot" aria-hidden="true">
+						<p class="boot-line">[<span class="ok">&nbsp;ok&nbsp;</span>] go 1.25 · fiber · templ · htmx — all systems nominal</p>
+						<p class="boot-line">[<span class="ok">&nbsp;ok&nbsp;</span>] mounted /home/visitor</p>
 					</div>
-					<h2 class="hall-title">The Portrait</h2>
-				</header>
 
-				<div class="portrait-stage">
-					<div class="portrait-frame">
-						<img src="/static/images/me-away.jpeg" alt="Brian Mwangi Kabiru — the subject"/>
-						<div class="portrait-glass"></div>
-					</div>
-					<div class="portrait-plaque">
-						<span class="fig">Fig. 1 — The subject</span>
-						One of the few surviving portraits predating the Feed Collapse.
-						Pigment on silicon. Photographed away from headquarters — a rarity.
-						Gift of the subject himself, who insisted on this frame.
-					</div>
-				</div>
-			</div>
-		</section>
+					@Result("whoami", WhoamiOutput())
 
-		<!-- Hall II — Employment Strata -->
-		<section id="strata" class="hall">
-			<div class="hall-inner">
-				<header class="hall-header">
-					<div class="hall-numeral">
-						<span class="roman">II</span>
-						<span class="rule"></span>
-					</div>
-					<h2 class="hall-title">Employment Strata</h2>
-					<p class="hall-intro">
-						Five institutions housed the subject between 2020 and the present.
-						Excavation reveals the following layers, newest nearest the surface.
+					<p class="term-hint">
+						type <code>help</code> { "for" } commands · <code>↑</code>/<code>↓</code> history · <code>tab</code> completes · <code>clear</code> wipes
 					</p>
-				</header>
-
-				<div class="strata-rail">
-					for i, experience := range experiences {
-						<article class="stratum">
-							<p class="stratum-depth">
-								Stratum { fmt.Sprintf("%d", i+1) } · <span class="metres">{ fmt.Sprintf("−%dm", (i+1)*2) }</span> · { experience.Duration }
-							</p>
-							<div class="stratum-card">
-								<div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-1">
-									<h3>{ experience.Title }</h3>
-									<span class="tenure">{ experience.Duration }</span>
-								</div>
-								<a href={ templ.SafeURL(experience.CompanyLink) } target="_blank" rel="noopener noreferrer" class="institution">
-									{ experience.Company }
-								</a>
-								<p class="desc">{ experience.Description }</p>
-								<div class="tooling">
-									for _, tech := range experience.Technologies {
-										<span>{ tech }</span>
-									}
-								</div>
-							</div>
-						</article>
-					}
 				</div>
+
+				<div class="term-chips" aria-label="quick commands">
+					<button type="button" @click="runCommand('help')">help</button>
+					<button type="button" @click="runCommand('whoami')">whoami</button>
+					<button type="button" @click="runCommand('thinkstack')">thinkstack</button>
+					<button type="button" @click="runCommand('experience')">experience</button>
+					<button type="button" @click="runCommand('projects')">projects</button>
+					<button type="button" @click="runCommand('skills')">skills</button>
+					<button type="button" @click="runCommand('fortune')">fortune</button>
+					<button type="button" @click="runCommand('man kabiru')">man kabiru</button>
+					<button type="button" @click="runCommand('contact')">contact</button>
+					<button type="button" @click="runCommand('clear')">clear</button>
+				</div>
+
+				<form
+					hx-post="/api/exec"
+					hx-target="#scrollback"
+					hx-swap="beforeend"
+					x-ref="form"
+					class="term-form"
+					autocomplete="off"
+				>
+					@PromptLabel()
+					<input
+						x-ref="input"
+						x-model="input"
+						@keydown="onKeydown($event)"
+						type="text"
+						name="command"
+						class="term-input"
+						spellcheck="false"
+						autocapitalize="off"
+						autocomplete="off"
+						aria-label="terminal input"
+					/>
+				</form>
 			</div>
-		</section>
-
-		<!-- Hall III — The Relics -->
-		<section id="relics" class="hall">
-			<div class="hall-inner">
-				<header class="hall-header">
-					<div class="hall-numeral">
-						<span class="roman">III</span>
-						<span class="rule"></span>
-					</div>
-					<h2 class="hall-title">The Relics</h2>
-					<p class="hall-intro">
-						Artifacts recovered intact from the subject's repositories.
-						Several remain operational. Scholars remain baffled.
-					</p>
-				</header>
-
-				<div class="vitrine-grid">
-					for i, project := range projects {
-						<a href={ templ.SafeURL(project.Link) } target="_blank" rel="noopener noreferrer" class="vitrine">
-							<span class="stamp">Do Not Touch</span>
-							<span class="relic-no">Relic № { fmt.Sprintf("%02d", i+1) }</span>
-							<h3>
-								{ project.Name }
-								<span class="arrow">↗</span>
-							</h3>
-							<p>{ project.Description }</p>
-							<span class="view-request">Request viewing ↗</span>
-						</a>
-					}
-				</div>
-			</div>
-		</section>
-
-		<!-- Hall IV — Tool Assemblage -->
-		<section id="tools" class="hall">
-			<div class="hall-inner">
-				<header class="hall-header">
-					<div class="hall-numeral">
-						<span class="roman">IV</span>
-						<span class="rule"></span>
-					</div>
-					<h2 class="hall-title">Tool Assemblage</h2>
-					<p class="hall-intro">
-						Seven instruments were recovered near the workstation.
-						Condition assessed at intake by the conservation team.
-					</p>
-				</header>
-
-				<div class="assemblage-grid">
-					for _, skill := range skills {
-						<div class="instrument">
-							<img src={ skill.Icon } alt={ skill.Name }/>
-							<span class="name">{ skill.Name }</span>
-							@conditionFor(skill.Proficiency)
-						</div>
-					}
-				</div>
-
-				<div class="placard assemblage-note">
-					<strong>Note.</strong> The Neovim instrument shows unusually heavy wear.
-					Scholars still debate its ritual function.
-				</div>
-			</div>
-		</section>
-
-		<!-- Hall V — The Fragment Corpus -->
-		<section id="corpus" class="hall">
-			<div class="hall-inner">
-				<header class="hall-header">
-					<div class="hall-numeral">
-						<span class="roman">V</span>
-						<span class="rule"></span>
-					</div>
-					<h2 class="hall-title">The Fragment Corpus</h2>
-					<p class="hall-intro">
-						Over fifty short texts were recovered from the subject's device.
-						Purpose unknown. Possibly scripture.
-					</p>
-				</header>
-
-				<div class="corpus-stage">
-					<p id="fragment-result" class="fragment-quote">{ quote }</p>
-					<button
-						hx-get="/api/get-quote"
-						hx-target="#fragment-result"
-						hx-swap="innerHTML swap:300ms"
-						class="archive-btn">
-						Translate Another Fragment
-					</button>
-					<p class="corpus-meta">Fragments transmitted on request · via HTMX, a protocol of the period</p>
-				</div>
-			</div>
-		</section>
-
-		<!-- Exit / gift shop -->
-		<footer class="exit-hall">
-			<div class="exit-inner">
-				<p class="archive-overline">You are leaving the exhibition</p>
-
-				<div class="exit-channels">
-					<a href="https://github.com/BrianMwangi21" target="_blank" rel="noopener noreferrer" title="GitHub — press G" aria-label="GitHub">
-						<img src="/static/images/github.svg" alt="GitHub"/>
-					</a>
-					<a href="https://www.linkedin.com/in/brian-mwangi/" target="_blank" rel="noopener noreferrer" title="LinkedIn — press L" aria-label="LinkedIn">
-						<img src="/static/images/linkedin.svg" alt="LinkedIn"/>
-					</a>
-					<a href="mailto:mwangikabiru21@gmail.com" title="Email — press E" aria-label="Email">
-						<img src="/static/images/gmail.svg" alt="Email"/>
-					</a>
-					<a href="https://wordsbykabiru.substack.com/" target="_blank" rel="noopener noreferrer" title="Substack — press S" aria-label="Substack">
-						<img src="/static/images/substack.svg" alt="Substack"/>
-					</a>
-				</div>
-
-				<p class="text-sm" style="color:var(--ink-dim);font-size:0.8rem;">
-					Curated by B. Mwangi Kabiru, who insists he had help.
-				</p>
-
-				<p class="conservation">
-					Go · Fiber · Templ · HTMX · Alpine.js · Tailwind CSS<br/>
-					Tools of the era, preserved in working order
-				</p>
-
-				<a href="https://github.com/BrianMwangi21" target="_blank" rel="noopener noreferrer"
-					class="archive-btn" style="text-decoration:none;display:inline-block;">
-					View the archive ↗
-				</a>
-			</div>
-		</footer>
-
-		<button data-mode-toggle class="mode-toggle" title="Toggle day mode (staff only)">
-			Day Mode — Staff Only
-		</button>
+		</div>
 	</div>
 }

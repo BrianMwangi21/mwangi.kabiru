@@ -3,1103 +3,504 @@
 @tailwind utilities;
 
 /* ==================================================================
-   EXHIBIT 2087 — THE DEVELOPER
-   A retrospective exhibition on the life and works of
-   Brian Mwangi Kabiru, software maker of the early GitHub era.
+   mwangi.kabiru — a terminal you visit
    ================================================================== */
 
 /* ==================== Palette ==================== */
 
 :root {
-  /* Night gallery (default) */
-  --wall: #0d0d11;
-  --wall-raised: #15151b;
-  --wall-deep: #08080b;
-  --ink: #eae5d8;
-  --ink-dim: #a29c8e;
-  --ink-faint: #6e695f;
-  --brass: #c9a24b;
-  --brass-bright: #e3c377;
-  --line: rgba(201, 162, 75, 0.28);
-  --line-faint: rgba(201, 162, 75, 0.14);
-  --glass: rgba(255, 255, 255, 0.04);
-  --glass-sheen: rgba(255, 255, 255, 0.09);
-  --shadow-vitrine: 0 30px 60px rgba(0, 0, 0, 0.55);
-  --spot-strength: 0.72;
+  --bg: #0b0f14;
+  --bg-soft: #0f151d;
+  --ink: #d8e1ea;
+  --ink-dim: #8b98a5;
+  --ink-faint: #4c5660;
+  --green: #3fb950;
+  --green-bright: #56d364;
+  --cyan: #39c5cf;
+  --blue: #58a6ff;
+  --amber: #d29922;
+  --red: #f85149;
+  --line: rgba(139, 152, 165, 0.16);
   color-scheme: dark;
 
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
-  line-height: 1.65;
+  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  line-height: 1.7;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Day mode — staff only */
-html.day {
-  --wall: #ece9e1;
-  --wall-raised: #f5f3ec;
-  --wall-deep: #dedbd0;
-  --ink: #191712;
-  --ink-dim: #4f4a40;
-  --ink-faint: #847e70;
-  --brass: #8a6d20;
-  --brass-bright: #6e5619;
-  --line: rgba(110, 86, 25, 0.4);
-  --line-faint: rgba(110, 86, 25, 0.18);
-  --glass: rgba(255, 255, 255, 0.55);
-  --glass-sheen: rgba(255, 255, 255, 0.7);
-  --shadow-vitrine: 0 24px 48px rgba(60, 50, 20, 0.18);
-  --spot-strength: 0;
-  color-scheme: light;
-}
-
 html {
-  background-color: var(--wall);
+  background: var(--bg);
   color: var(--ink);
-  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  background-color: var(--wall);
-  transition:
-    background-color 0.5s ease,
-    color 0.5s ease;
+  min-height: 100vh;
 }
 
 ::selection {
-  background: var(--brass);
-  color: var(--wall-deep);
+  background: rgba(63, 185, 80, 0.35);
+  color: #ffffff;
 }
 
-/* ==================== Typography ==================== */
+/* ==================== Shell ==================== */
 
-.serif-display {
-  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.mono-label {
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-}
-
-.brass-text {
-  color: var(--brass);
-}
-
-/* ==================== Atmosphere layers ==================== */
-
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  pointer-events: none;
-  opacity: 0.05;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-}
-
-html.day .grain {
-  opacity: 0.03;
-  mix-blend-mode: multiply;
-}
-
-.spotlight {
-  position: fixed;
-  inset: 0;
-  z-index: 30;
-  pointer-events: none;
-  background: radial-gradient(
-    640px circle at var(--mx, 50%) var(--my, 38%),
-    transparent 0%,
-    transparent 34%,
-    rgba(5, 5, 8, calc(var(--spot-strength) * 0.62)) 72%,
-    rgba(5, 5, 8, var(--spot-strength)) 100%
-  );
-  transition: opacity 0.6s ease;
-}
-
-@media (hover: none), (max-width: 768px) {
-  .spotlight {
-    display: none;
-  }
-}
-
-/* ==================== Hall structure ==================== */
-
-.hall {
+.term-shell {
   position: relative;
-  padding: 7rem 1.25rem;
-  opacity: 0.45;
-  transform: translateY(14px);
-  transition:
-    opacity 1.1s ease,
-    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  min-height: 100vh;
+  padding: clamp(0.75rem, 3vw, 2.5rem);
+  background:
+    radial-gradient(60rem 32rem at 50% -12%, rgba(63, 185, 80, 0.07), transparent 60%),
+    var(--bg);
 }
 
-.hall.lit {
-  opacity: 1;
-  transform: translateY(0);
-  animation: hallFlicker 1.6s ease-out 1;
+/* faint scanlines */
+.term-shell::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.016) 0 1px,
+    transparent 1px 3px
+  );
 }
 
-@keyframes hallFlicker {
-  0% {
-    opacity: 0.45;
-  }
-  8% {
-    opacity: 0.9;
-  }
-  14% {
-    opacity: 0.55;
-  }
-  26% {
-    opacity: 1;
-  }
-  34% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@media (min-width: 768px) {
-  .hall {
-    padding: 8.5rem 2rem;
-  }
-}
-
-.hall-inner {
-  max-width: 64rem;
-  margin: 0 auto;
-}
-
-/* Hall header: numeral, rule, title */
-.hall-header {
+.term-window {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
-  margin-bottom: 3rem;
+  max-width: 52rem;
+  height: calc(100vh - clamp(1.5rem, 6vw, 5rem));
+  height: calc(100dvh - clamp(1.5rem, 6vw, 5rem));
+  margin: 0 auto;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
 
-.hall-numeral {
-  display: inline-flex;
+/* ==================== Titlebar ==================== */
+
+.term-titlebar {
+  display: flex;
   align-items: center;
   gap: 1rem;
-}
-
-.hall-numeral .roman {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 1.35rem;
-  color: var(--brass);
-  border: 1px solid var(--line);
-  padding: 0.15rem 0.85rem;
-  border-radius: 999px;
-}
-
-.hall-numeral .rule {
-  height: 1px;
-  flex: 1;
-  background: linear-gradient(90deg, var(--line), transparent);
-}
-
-.hall-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.4rem, 6vw, 4.2rem);
-  line-height: 1.05;
-  font-weight: 600;
-  color: var(--ink);
-  margin: 0;
-}
-
-.hall-title em {
-  font-style: italic;
-  color: var(--brass);
-}
-
-.hall-intro {
-  font-size: 0.82rem;
-  color: var(--ink-dim);
-  max-width: 46rem;
-  letter-spacing: 0.02em;
-}
-
-/* Placard — the universal label */
-.placard {
-  border-left: 2px solid var(--line);
-  padding: 0.35rem 0 0.35rem 1rem;
-  font-size: 0.78rem;
-  color: var(--ink-dim);
-  line-height: 1.7;
-}
-
-.placard strong {
-  color: var(--ink);
-  font-weight: 500;
-}
-
-/* ==================== Entry facade ==================== */
-
-.entry-hall {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 2.2rem;
-  padding-top: 5rem !important;
-}
-
-.archive-overline {
-  font-size: 0.66rem;
-  letter-spacing: 0.42em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-}
-
-.ticket {
-  position: relative;
-  border: 1px solid var(--line);
-  padding: 1.1rem 1.8rem;
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-  background: linear-gradient(120deg, transparent 46%, var(--glass-sheen) 50%, transparent 54%);
-  background-size: 220% 100%;
-  animation: sheenSweep 7s ease-in-out infinite;
-}
-
-@keyframes sheenSweep {
-  0%,
-  65% {
-    background-position: 130% 0;
-  }
-  100% {
-    background-position: -130% 0;
-  }
-}
-
-.ticket .admit {
-  color: var(--brass);
-}
-
-.entry-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-size: clamp(3rem, 10vw, 7rem);
-  line-height: 0.98;
-  margin: 0;
-  color: var(--ink);
-  text-shadow: 0 0 60px rgba(201, 162, 75, 0.12);
-}
-
-.entry-name .last {
-  font-style: italic;
-  color: var(--brass);
-}
-
-.entry-role {
-  font-size: 0.78rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-}
-
-.entry-placard {
-  max-width: 34rem;
-  border-left: none;
-  border-top: 1px solid var(--line-faint);
-  border-bottom: 1px solid var(--line-faint);
-  padding: 1rem 0.5rem;
-}
-
-.channel-keys {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.9rem;
-  font-size: 0.66rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-
-.channel-keys kbd {
-  font-family: inherit;
-  border: 1px solid var(--line);
-  border-bottom-width: 2px;
-  border-radius: 4px;
-  padding: 0.1rem 0.5rem;
-  color: var(--brass);
-  margin-right: 0.35rem;
-}
-
-.proceed-cue {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--ink-faint);
-  font-size: 0.64rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-}
-
-.proceed-cue svg {
-  animation: cueDrift 2.6s ease-in-out infinite;
-}
-
-@keyframes cueDrift {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.5;
-  }
-  50% {
-    transform: translateY(7px);
-    opacity: 1;
-  }
-}
-
-/* ==================== Hall I — Portrait ==================== */
-
-.portrait-stage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-}
-
-.portrait-frame {
-  position: relative;
-  padding: 0.9rem;
-  background: linear-gradient(155deg, #2a2113, #171208 55%, #33280f);
-  box-shadow:
-    inset 0 0 0 1px rgba(227, 195, 119, 0.35),
-    inset 0 0 0 5px rgba(0, 0, 0, 0.6),
-    var(--shadow-vitrine);
-}
-
-html.day .portrait-frame {
-  background: linear-gradient(155deg, #d8c184, #b39344 55%, #e6cd8e);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 250, 230, 0.6),
-    inset 0 0 0 5px rgba(90, 70, 20, 0.35),
-    var(--shadow-vitrine);
-}
-
-.portrait-frame img {
-  display: block;
-  width: 16rem;
-  height: 20rem;
-  object-fit: cover;
-  filter: saturate(0.88) contrast(1.05);
-}
-
-html.day .portrait-frame img {
-  filter: saturate(0.95);
-}
-
-@media (min-width: 768px) {
-  .portrait-frame img {
-    width: 19rem;
-    height: 24rem;
-  }
-}
-
-.portrait-glass {
-  position: absolute;
-  inset: 0.9rem;
-  pointer-events: none;
-  background: linear-gradient(
-    115deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.07) 43%,
-    rgba(255, 255, 255, 0.16) 46%,
-    transparent 58%
-  );
-}
-
-.portrait-plaque {
-  border: 1px solid var(--line);
-  background: var(--wall-raised);
-  padding: 1rem 1.4rem;
-  max-width: 26rem;
-  text-align: left;
-  font-size: 0.74rem;
-  color: var(--ink-dim);
-  line-height: 1.75;
-}
-
-.portrait-plaque .fig {
-  color: var(--brass);
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 0.4rem;
-}
-
-/* ==================== Hall II — Employment strata ==================== */
-
-.strata-rail {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
-  padding-left: 1.4rem;
-}
-
-.strata-rail::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.4rem;
-  bottom: 0.4rem;
-  width: 1px;
-  background: repeating-linear-gradient(
-    to bottom,
-    var(--line),
-    var(--line) 6px,
-    transparent 6px,
-    transparent 12px
-  );
-}
-
-.stratum {
-  position: relative;
-}
-
-.stratum::before {
-  content: '';
-  position: absolute;
-  left: -1.63rem;
-  top: 0.55rem;
-  width: 9px;
-  height: 9px;
-  transform: rotate(45deg);
-  background: var(--wall);
-  border: 1px solid var(--brass);
-}
-
-.stratum-depth {
-  font-size: 0.64rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-bottom: 0.55rem;
-}
-
-.stratum-depth .metres {
-  color: var(--brass);
-}
-
-.stratum-card {
-  border: 1px solid var(--line-faint);
-  background: linear-gradient(170deg, var(--wall-raised), rgba(21, 21, 27, 0.35));
-  padding: 1.6rem 1.7rem;
-  transition:
-    border-color 0.4s ease,
-    transform 0.4s ease,
-    box-shadow 0.4s ease;
-}
-
-html.day .stratum-card {
-  background: var(--wall-raised);
-}
-
-.stratum-card:hover {
-  border-color: var(--line);
-  transform: translateY(-3px);
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
-}
-
-html.day .stratum-card:hover {
-  box-shadow: 0 16px 30px rgba(60, 50, 20, 0.14);
-}
-
-.stratum-card h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.7rem;
-  font-weight: 600;
-  margin: 0;
-  color: var(--ink);
-}
-
-.stratum-card .institution {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
   font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--brass);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.3s ease;
-}
-
-.stratum-card .institution:hover {
-  border-color: var(--brass);
-}
-
-.stratum-card .tenure {
-  font-size: 0.66rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-
-.stratum-card p.desc {
-  font-size: 0.84rem;
   color: var(--ink-dim);
-  line-height: 1.8;
-  margin: 0.9rem 0 1.1rem;
+  user-select: none;
 }
 
-.tooling {
-  display: flex;
-  flex-wrap: wrap;
+.term-dots {
+  display: inline-flex;
   gap: 0.45rem;
 }
 
-.tooling span {
-  font-size: 0.62rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  border: 1px solid var(--line-faint);
-  color: var(--ink-dim);
-  padding: 0.22rem 0.6rem;
-  transition:
-    border-color 0.3s ease,
-    color 0.3s ease;
+.term-dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
 }
 
-.tooling span:hover {
-  border-color: var(--line);
+.dot-red { background: #ff5f57; }
+.dot-yellow { background: #febc2e; }
+.dot-green { background: #28c840; }
+
+.term-title {
+  flex: 1;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.term-proto {
+  color: var(--ink-faint);
+}
+
+/* ==================== Body & scrollback ==================== */
+
+.term-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 1.25rem clamp(1rem, 3vw, 1.75rem) 0;
+  font-size: clamp(0.82rem, 1.6vw, 0.92rem);
+}
+
+#scrollback {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.term-block {
+  margin-bottom: 1.4rem;
+}
+
+.term-echo {
+  margin-bottom: 0.35rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.term-cmd {
+  color: #ffffff;
+  font-weight: 500;
+  margin-left: 0.75ch;
+}
+
+.term-out {
   color: var(--ink);
 }
 
-/* ==================== Hall III — Relics vitrines ==================== */
-
-.vitrine-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.4rem;
+.term-out p {
+  margin: 0 0 0.55rem;
+  max-width: 46rem;
 }
 
-@media (min-width: 768px) {
-  .vitrine-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.6rem;
-  }
-}
-
-.vitrine {
-  position: relative;
-  display: block;
+.term-out a {
+  color: var(--blue);
   text-decoration: none;
-  border: 1px solid var(--line-faint);
-  background:
-    linear-gradient(165deg, var(--glass-sheen), transparent 38%),
-    var(--wall-raised);
-  padding: 1.5rem 1.6rem 1.4rem;
-  overflow: hidden;
-  transition:
-    border-color 0.4s ease,
-    transform 0.4s ease,
-    box-shadow 0.4s ease;
+  border-bottom: 1px dashed rgba(88, 166, 255, 0.4);
 }
 
-.vitrine::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -80%;
-  width: 55%;
-  height: 100%;
-  background: linear-gradient(
-    105deg,
-    transparent,
-    rgba(255, 255, 255, 0.05),
-    transparent
-  );
-  transform: skewX(-18deg);
-  transition: left 0.7s ease;
-  pointer-events: none;
+.term-out a:hover {
+  color: var(--green-bright);
+  border-bottom-color: var(--green-bright);
 }
 
-.vitrine:hover {
-  border-color: var(--line);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-vitrine);
+.dim { color: var(--ink-dim); }
+.err { color: var(--red); }
+.cmd { color: var(--amber); }
+
+.term-out code,
+.term-hint code,
+.out-foot code {
+  color: var(--amber);
+  background: rgba(210, 153, 34, 0.1);
+  padding: 0.05rem 0.35rem;
+  border-radius: 4px;
 }
 
-.vitrine:hover::after {
-  left: 130%;
-}
-
-.relic-no {
-  display: block;
-  font-size: 0.62rem;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: var(--brass);
-  margin-bottom: 0.8rem;
-}
-
-.vitrine h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.65rem;
-  font-weight: 600;
+kbd {
+  font-family: inherit;
+  font-size: 0.85em;
   color: var(--ink);
-  margin: 0 0 0.5rem;
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 0 0.3rem;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ==================== Prompt ==================== */
+
+.ps1 {
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.ps1-user { color: var(--green-bright); }
+.ps1-host { color: var(--cyan); }
+.ps1-path { color: var(--blue); }
+
+/* ==================== Boot sequence ==================== */
+
+.boot {
+  margin-bottom: 1.4rem;
+  font-size: 0.8em;
+  color: var(--ink-dim);
+}
+
+.boot p {
+  margin: 0 0 0.15rem;
+  opacity: 0;
+  animation: boot-in 0.35s ease forwards;
+}
+
+.boot p:nth-child(1) { animation-delay: 0.15s; }
+.boot p:nth-child(2) { animation-delay: 0.55s; }
+
+.boot .ok { color: var(--green-bright); }
+
+@keyframes boot-in {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ==================== Command outputs ==================== */
+
+.out-head {
+  color: var(--ink-dim);
+  margin-bottom: 0.4rem !important;
+}
+
+.out-grid {
+  display: grid;
+  grid-template-columns: minmax(6.5rem, auto) 1fr;
+  gap: 0.15rem 1.25rem;
+  margin-bottom: 0.6rem;
+}
+
+.out-foot {
+  color: var(--ink-dim);
+  font-size: 0.88em;
+  margin-top: 0.35rem;
+}
+
+.whoami-name {
+  color: var(--green-bright);
+  font-size: 1.25em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 0 !important;
+}
+
+.whoami-role {
+  color: var(--cyan);
+  margin-top: 0 !important;
+}
+
+.xp {
+  margin-bottom: 1rem;
+}
+
+.xp p {
+  margin: 0 !important;
+}
+
+.venture-live {
+  color: var(--green-bright);
+  margin-left: 0.75rem;
+  font-size: 0.9em;
+}
+
+.venture-beta {
+  color: var(--amber);
+  margin-left: 0.75rem;
+  font-size: 0.9em;
+}
+
+.venture-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.4rem;
+  margin-top: 0.2rem;
+  color: var(--ink-dim);
+  font-size: 0.9em;
+}
+
+.venture-stats strong {
+  color: var(--green-bright);
+  font-weight: 600;
+}
+
+.xp-head {
+  font-size: 0.85em;
+}
+
+.xp-title {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.xp-desc {
+  color: var(--ink-dim);
+  font-size: 0.92em;
+}
+
+.xp-tech {
+  color: var(--green);
+  font-size: 0.85em;
+}
+
+.proj-list {
+  margin-bottom: 0.5rem;
+}
+
+.proj {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+}
+
+.proj-name {
+  font-weight: 500;
+}
+
+.skill-list {
+  margin-bottom: 0.5rem;
+}
+
+.skill {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.skill-name {
+  display: inline-block;
+  min-width: 6.5rem;
+  color: var(--ink);
+}
+
+.skill-bar {
+  letter-spacing: 0.05em;
+}
+
+.bar-fill { color: var(--green-bright); }
+.bar-empty { color: var(--ink-faint); }
+
+.skill-level {
+  color: var(--ink-dim);
+  font-size: 0.85em;
+}
+
+.fortune {
+  color: var(--amber);
+  font-size: 1.05em;
+}
+
+.man {
+  margin: 0;
+  font-family: inherit;
+  font-size: 0.9em;
+  line-height: 1.65;
+  color: var(--ink);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ==================== Hint ==================== */
+
+.term-hint {
+  color: var(--ink-dim);
+  font-size: 0.82em;
+  margin-bottom: 1.4rem;
+}
+
+/* ==================== Quick command chips ==================== */
+
+.term-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0 0 0.9rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--line);
+}
+
+.term-chips button {
+  font-family: inherit;
+  font-size: 0.75rem;
+  color: var(--ink-dim);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.2rem 0.65rem;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.term-chips button:hover,
+.term-chips button:focus-visible {
+  color: var(--green-bright);
+  border-color: rgba(63, 185, 80, 0.5);
+  background: rgba(63, 185, 80, 0.08);
+  outline: none;
+}
+
+/* ==================== Input form ==================== */
+
+.term-form {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: 0.6rem;
+  padding: 0.25rem 0 1rem;
+  background: var(--bg-soft);
 }
 
-.vitrine h3 .arrow {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.9rem;
-  color: var(--ink-faint);
-  transition:
-    transform 0.35s ease,
-    color 0.35s ease;
-}
-
-.vitrine:hover h3 .arrow {
-  transform: translateX(4px);
-  color: var(--brass);
-}
-
-.vitrine p {
-  font-size: 0.8rem;
-  color: var(--ink-dim);
-  line-height: 1.75;
-  margin: 0 0 1.1rem;
-}
-
-.vitrine .view-request {
-  font-size: 0.64rem;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  transition: color 0.3s ease;
-}
-
-.vitrine:hover .view-request {
-  color: var(--brass);
-}
-
-/* DO NOT TOUCH stamp */
-.stamp {
-  position: absolute;
-  right: 1.1rem;
-  top: 1rem;
-  border: 2px solid #b3402f;
-  color: #b3402f;
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  padding: 0.28rem 0.6rem;
-  transform: rotate(8deg) scale(0.6);
-  opacity: 0;
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  pointer-events: none;
-  background: rgba(179, 64, 47, 0.08);
-}
-
-.vitrine:hover .stamp {
-  opacity: 1;
-  transform: rotate(-6deg) scale(1);
-  animation: caseRattle 0.4s ease-in-out 0.25s;
-}
-
-@keyframes caseRattle {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-2px);
-  }
-  50% {
-    transform: translateX(2px);
-  }
-  75% {
-    transform: translateX(-1px);
-  }
-}
-
-/* ==================== Hall IV — Tool assemblage ==================== */
-
-.assemblage-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.2rem;
-}
-
-@media (min-width: 768px) {
-  .assemblage-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-  }
-}
-
-.instrument {
-  border: 1px solid var(--line-faint);
-  background: var(--wall-raised);
-  padding: 1.6rem 1rem 1.3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  text-align: center;
-  transition:
-    border-color 0.4s ease,
-    transform 0.4s ease;
-}
-
-.instrument:hover {
-  border-color: var(--line);
-  transform: translateY(-4px);
-}
-
-.instrument img {
-  width: 3.4rem;
-  height: 3.4rem;
-  filter: invert(1) brightness(0.92);
-  transition:
-    filter 0.4s ease,
-    transform 0.4s ease;
-}
-
-html.day .instrument img {
-  filter: none;
-}
-
-.instrument:hover img {
-  filter: invert(1) brightness(1.15) drop-shadow(0 0 14px rgba(201, 162, 75, 0.35));
-}
-
-html.day .instrument:hover img {
-  filter: drop-shadow(0 0 10px rgba(138, 109, 32, 0.3));
-}
-
-.instrument .name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.condition {
-  display: inline-block;
-  font-size: 0.58rem;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  padding: 0.24rem 0.65rem;
-}
-
-.condition.pristine {
-  color: var(--brass-bright);
-  border: 1px solid var(--brass);
-  background: rgba(201, 162, 75, 0.09);
-}
-
-.condition.weathered {
-  color: var(--ink-dim);
-  border: 1px solid var(--line);
-}
-
-.condition.fragmentary {
-  color: var(--ink-faint);
-  border: 1px dashed var(--line-faint);
-}
-
-.assemblage-note {
-  margin-top: 1.8rem;
-}
-
-/* ==================== Hall V — Fragment corpus ==================== */
-
-.corpus-stage {
-  border: 1px solid var(--line-faint);
-  background: linear-gradient(170deg, var(--wall-raised), rgba(13, 13, 17, 0.4));
-  padding: 3rem 1.6rem;
-  text-align: center;
-}
-
-html.day .corpus-stage {
-  background: var(--wall-raised);
-}
-
-@media (min-width: 768px) {
-  .corpus-stage {
-    padding: 4rem 3.5rem;
-  }
-}
-
-.fragment-quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(1.5rem, 4vw, 2.3rem);
-  line-height: 1.4;
-  color: var(--ink);
-  max-width: 44rem;
-  margin: 0 auto 2.4rem;
-  min-height: 5.5rem;
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
-}
-
-.fragment-quote.htmx-swapping {
-  opacity: 0;
-  transform: translateY(6px);
-}
-
-.corpus-meta {
-  font-size: 0.62rem;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-top: 1.6rem;
-}
-
-.archive-btn {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--brass);
+.term-input {
+  flex: 1;
+  min-width: 0;
   background: transparent;
-  border: 1px solid var(--brass);
-  padding: 0.85rem 1.7rem;
-  cursor: pointer;
-  transition:
-    background-color 0.35s ease,
-    color 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-.archive-btn:hover {
-  background: var(--brass);
-  color: var(--wall-deep);
-  box-shadow: 0 0 32px rgba(201, 162, 75, 0.25);
-}
-
-/* ==================== Exit / gift shop ==================== */
-
-.exit-hall {
-  border-top: 1px solid var(--line-faint);
-  padding: 5rem 1.25rem 6rem;
-}
-
-.exit-inner {
-  max-width: 64rem;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.6rem;
-  text-align: center;
-}
-
-.exit-channels {
-  display: flex;
-  gap: 0.8rem;
-}
-
-.exit-channels a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.9rem;
-  height: 2.9rem;
-  border: 1px solid var(--line-faint);
-  transition:
-    border-color 0.35s ease,
-    transform 0.35s ease,
-    background-color 0.35s ease;
-}
-
-.exit-channels a:hover {
-  border-color: var(--brass);
-  transform: translateY(-3px);
-  background: rgba(201, 162, 75, 0.07);
-}
-
-.exit-channels img {
-  width: 1.2rem;
-  height: 1.2rem;
-  filter: invert(0.75);
-}
-
-html.day .exit-channels img {
-  filter: invert(0.35);
-}
-
-.exit-channels a:hover img {
-  filter: invert(0.9);
-}
-
-html.day .exit-channels a:hover img {
-  filter: invert(0.2);
-}
-
-.conservation {
-  font-size: 0.64rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-
-/* ==================== Hall directory (side nav) ==================== */
-
-.scroll-dots {
-  position: fixed;
-  right: 1.6rem;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-  z-index: 40;
-}
-
-.scroll-dot {
-  width: auto;
-  height: auto;
-  background: none;
   border: none;
-  cursor: pointer;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 0.95rem;
-  color: var(--ink-faint);
-  padding: 0.1rem 0.3rem;
-  transition:
-    color 0.3s ease,
-    transform 0.3s ease;
-  position: relative;
+  outline: none;
+  padding: 0;
+  font: inherit;
+  color: #ffffff;
+  caret-color: var(--green-bright);
 }
 
-.scroll-dot:hover {
-  color: var(--brass);
-  transform: scale(1.15);
+/* ==================== Scrollbar ==================== */
+
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.scroll-dot.active {
-  color: var(--brass-bright);
-  transform: scale(1.2);
-  text-shadow: 0 0 18px rgba(201, 162, 75, 0.5);
+::-webkit-scrollbar-track {
+  background: var(--bg);
 }
 
-.scroll-dot.active::after {
-  content: '';
-  position: absolute;
-  right: -0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--brass-bright);
-  box-shadow: 0 0 10px rgba(201, 162, 75, 0.7);
+::-webkit-scrollbar-thumb {
+  background: var(--ink-faint);
+  border-radius: 5px;
+  border: 2px solid var(--bg);
 }
 
-@media (max-width: 768px) {
-  .scroll-dots {
-    display: none;
-  }
-}
-
-/* ==================== Day-mode toggle ==================== */
-
-.mode-toggle {
-  position: fixed;
-  bottom: 1.6rem;
-  right: 1.6rem;
-  z-index: 50;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-  background: var(--wall-raised);
-  border: 1px solid var(--line-faint);
-  padding: 0.6rem 0.9rem;
-  cursor: pointer;
-  transition:
-    border-color 0.3s ease,
-    color 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.mode-toggle:hover {
-  border-color: var(--brass);
-  color: var(--brass);
-  box-shadow: 0 0 24px rgba(201, 162, 75, 0.15);
-}
-
-/* ==================== Accessibility & motion ==================== */
-
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--brass);
-  outline-offset: 3px;
-}
+/* ==================== Motion & responsive ==================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .hall,
-  .ticket,
-  .proceed-cue svg,
-  .vitrine::after {
-    animation: none !important;
-    transition: none !important;
-  }
-
-  .hall {
+  .boot p {
+    animation: none;
     opacity: 1;
-    transform: none;
-  }
-
-  html {
-    scroll-behavior: auto;
   }
 }
 
-/* ==================== Responsive typography ==================== */
-
-@media (max-width: 480px) {
-  .hall {
-    padding: 5rem 1rem;
+@media (max-width: 640px) {
+  .term-shell {
+    padding: 0;
   }
 
-  .stratum-card {
-    padding: 1.2rem 1.1rem;
+  .term-shell::before {
+    display: none;
   }
 
-  .corpus-stage {
-    padding: 2.4rem 1.2rem;
+  .term-window {
+    height: 100vh;
+    height: 100dvh;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .term-title,
+  .term-proto {
+    font-size: 0.62rem;
+  }
+
+  .term-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+  }
+
+  .term-chips button {
+    flex-shrink: 0;
   }
 }
-
 /* ==================================================================
    PRESERVED — Paige's scrapbook page (/paige)
    ================================================================== */
@@ -1291,4 +692,210 @@ button:focus-visible {
   -webkit-text-stroke-color: #002d62;
   text-stroke-width: 1px;
   text-stroke-color: #002d62;
+}
+
+/* ==================================================================
+   Paige's letters — sealed envelopes (/paige)
+   ================================================================== */
+
+.letters-sub {
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.letters-foot {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.letters-foot .dancing-font {
+  font-size: 1.3rem;
+  color: #002d62;
+}
+
+.envelope {
+  position: relative;
+  transition: transform 0.25s ease;
+}
+
+.envelope:nth-child(odd) {
+  transform: rotate(-0.5deg);
+}
+
+.envelope:nth-child(even) {
+  transform: rotate(0.5deg);
+}
+
+.envelope.is-open {
+  transform: none;
+}
+
+/* ---- Envelope front ---- */
+
+.envelope-front {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  padding: 3.9rem 1.5rem 1.9rem;
+  cursor: pointer;
+  text-align: center;
+  font-family: inherit;
+  color: inherit;
+  background: linear-gradient(180deg, #f7ecd7 0%, #f0e1c3 100%);
+  border: 1px solid rgba(120, 85, 40, 0.28);
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(60, 40, 10, 0.18);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-radius 0.3s ease;
+  overflow: hidden;
+}
+
+.envelope-front:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(60, 40, 10, 0.24);
+}
+
+.envelope.is-open .envelope-front {
+  border-radius: 10px 10px 0 0;
+  cursor: default;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.4rem;
+  background: linear-gradient(180deg, #e9d5b0 0%, #f3e6cc 100%);
+  border-bottom: 1px solid rgba(120, 85, 40, 0.25);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition:
+    transform 0.5s ease,
+    opacity 0.45s ease;
+}
+
+.envelope.is-open .envelope-flap {
+  transform: rotateX(160deg);
+  opacity: 0;
+}
+
+.envelope-postmark {
+  position: absolute;
+  top: 0.85rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border: 2px dashed rgba(0, 45, 98, 0.35);
+  border-radius: 50%;
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  color: rgba(0, 45, 98, 0.5);
+  transform: rotate(12deg);
+}
+
+.envelope-meta {
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #8a7a5c;
+}
+
+.envelope-title {
+  font-size: 2.1rem;
+  line-height: 1.15;
+  color: #002d62;
+}
+
+.envelope-note {
+  font-family: 'Kalam', cursive;
+  font-size: 0.95rem;
+  color: #6b6152;
+}
+
+.envelope-hint {
+  margin-top: 0.5rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #a08d66;
+  animation: hint-pulse 2.6s ease-in-out infinite;
+}
+
+.envelope.is-open .envelope-hint {
+  display: none;
+}
+
+@keyframes hint-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+/* ---- The letter inside ---- */
+
+.letter-paper {
+  background:
+    radial-gradient(circle at 15% 0%, rgba(0, 45, 98, 0.05), transparent 45%),
+    linear-gradient(180deg, #fffdf6 0%, #fdf8ec 100%);
+  border: 1px solid rgba(120, 85, 40, 0.22);
+  border-top: none;
+  border-radius: 0 0 18px 18px;
+  padding: 1.9rem clamp(1.15rem, 4vw, 2.3rem) 1.3rem;
+  box-shadow: 0 20px 36px rgba(60, 40, 10, 0.16);
+  font-family: 'Kalam', cursive;
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: #3d3a33;
+}
+
+.letter-paper img {
+  border-radius: 14px;
+}
+
+.letter-close {
+  display: block;
+  margin: 1.6rem auto 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8a7a5c;
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed rgba(120, 85, 40, 0.4);
+  padding: 0 0 0.15rem;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.letter-close:hover {
+  color: #002d62;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .envelope-flap,
+  .envelope-front {
+    transition: none;
+  }
+
+  .envelope-hint {
+    animation: none;
+  }
+}
+
+/* Keep overscroll on /paige warm — the global html bg is terminal-dark */
+html:has(.scrapbook-bg),
+body:has(.scrapbook-bg) {
+  background: #fffaf3;
 }

@@ -19,17 +19,14 @@ func getRandomQuote() string {
 
 func indexViewHandler(c *fiber.Ctx) error {
 	metaTags := pages.MetaTags(
-		"mwangi kabiru, full stack developer, go, exhibit 2087",
-		"EXHIBIT 2087: THE DEVELOPER. A retrospective exhibition on the life and works of Brian Mwangi Kabiru, software maker of the early GitHub era. Admission free.",
+		"mwangi kabiru, full stack developer, go, typescript, terminal, htmx",
+		"Brian Mwangi Kabiru — full-stack developer from Nairobi. This site is a terminal. Type commands, poke around, break nothing.",
 	)
-
-	quote := getRandomQuote()
-	bodyContent := pages.BodyContent(quote, pages.EXPERIENCES, pages.PROJECTS, pages.SKILLS)
 
 	templateHandler := templ.Handler(
 		templates.Layout(
 			"mwangi.kabiru",
-			metaTags, bodyContent,
+			metaTags, pages.TerminalContent(),
 		),
 	)
 
@@ -37,10 +34,7 @@ func indexViewHandler(c *fiber.Ctx) error {
 }
 
 func paigeHandler(c *fiber.Ctx) error {
-	metaTags := pages.MetaTags(
-		"mwangi kabiru",
-		"Allow me to reintroduce myself!",
-	)
+	metaTags := pages.PaigeMetaTags()
 
 	bodyContent := pages.PaigeContent()
 
@@ -54,10 +48,9 @@ func paigeHandler(c *fiber.Ctx) error {
 	return adaptor.HTTPHandler(templateHandler)(c)
 }
 
-func getQuoteHandler(c *fiber.Ctx) error {
-	if c.Get("HX-Request") == "" || c.Get("HX-Request") != "true" {
+func execCommandHandler(c *fiber.Ctx) error {
+	if c.Get("HX-Request") != "true" {
 		return fiber.NewError(fiber.StatusBadRequest, "non-htmx request")
 	}
-	quote := getRandomQuote()
-	return c.SendString(quote)
+	return adaptor.HTTPHandler(templ.Handler(dispatchCommand(c.FormValue("command"))))(c)
 }

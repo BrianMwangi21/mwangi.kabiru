@@ -30,13 +30,13 @@ func runServer() error {
 
 	server.Use(logger.New())
 
-	server.Static("/static", "./static")
+	server.Static("/static", "./static", fiber.Static{MaxAge: 300})
 
 	server.Get("/", indexViewHandler)
 
 	server.Get("/paige", paigeHandler)
 
-	server.Get("/api/get-quote", getQuoteHandler)
+	server.Post("/api/exec", execCommandHandler)
 
 	return server.Listen(fmt.Sprintf(":%d", port))
 }

@@ -21,6 +21,45 @@ type Skill struct {
 	Proficiency string // "Expert", "Proficient", "Learning"
 }
 
+type Venture struct {
+	Name        string
+	Status      string // "Live", "Private beta"
+	Link        string
+	Description string
+	Stats       []VentureStat
+}
+
+type VentureStat struct {
+	Value string
+	Label string
+}
+
+var VENTURES = []Venture{
+	{
+		Name:        "Elimu",
+		Status:      "live",
+		Link:        "https://elimu.dev",
+		Description: "Turns PDFs, slides and notes into lessons, flashcards and quizzes — studying starts from the material you already have.",
+		Stats: []VentureStat{
+			{Value: "600+", Label: "study packs created"},
+			{Value: "7,000+", Label: "flashcards generated"},
+			{Value: "5,900+", Label: "practice questions written"},
+		},
+	},
+	{
+		Name:        "Next Role",
+		Status:      "private beta",
+		Link:        "https://next-role-for-me.vercel.app",
+		Description: "Reads your CV, watches the careers pages you care about, and tells you which openings actually fit — and why.",
+	},
+	{
+		Name:        "RisitiBox",
+		Status:      "live",
+		Link:        "https://risitibox.vercel.app",
+		Description: "Scan the QR code on any eTIMS receipt and keep every invoice ready for filing, exportable in seconds.",
+	},
+}
+
 var EXPERIENCES = []Experince{
 	{
 		Company:      "Sourcefabric z.ú",
@@ -57,7 +96,7 @@ var EXPERIENCES = []Experince{
 }
 
 var PROJECTS = []Project{
-	{Name: "elimu.dev", Link: "https://elimu.dev", Description: "AI Study Tools: From Scattered Notes to Exam Confidence | ELIMU"},
+	{Name: "elimu.dev", Link: "https://elimu.dev", Description: "AI study tools — upload notes, get lessons, flashcards & quizzes. 600+ study packs and counting. A Thinkstack venture."},
 	{Name: "analitika", Link: "https://analitika.vercel.app/", Description: "Get you game odds and bets analyzed by AI"},
 	{Name: "revealreveal", Link: "https://revealreveal.vercel.app/", Description: "Create memorable reveal moments"},
 	{Name: "boardsaga", Link: "https://boardsaga.vercel.app/", Description: "Transform your chess games into captivating stories"},
