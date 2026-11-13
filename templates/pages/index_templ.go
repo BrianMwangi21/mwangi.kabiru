@@ -8,11 +8,7 @@ package pages
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-import (
-	"fmt"
-)
-
-func conditionFor(proficiency string) templ.Component {
+func MetaTags(keywords, description string) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -33,74 +29,33 @@ func conditionFor(proficiency string) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		if proficiency == "Expert" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<span class=\"condition pristine\">Pristine</span>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-		} else if proficiency == "Proficient" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<span class=\"condition weathered\">Weathered</span>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-		} else {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<span class=\"condition fragmentary\">Fragmentary</span>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<meta name=\"keywords\" content=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
 		}
-		return nil
-	})
-}
-
-func MetaTags(keywords, description string) templ.Component {
-	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
-		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
-			return templ_7745c5c3_CtxErr
+		var templ_7745c5c3_Var2 string
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.ResolveAttributeValue(keywords)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 4, Col: 41}
 		}
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
-		if !templ_7745c5c3_IsBuffer {
-			defer func() {
-				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
-				if templ_7745c5c3_Err == nil {
-					templ_7745c5c3_Err = templ_7745c5c3_BufErr
-				}
-			}()
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var2)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
 		}
-		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var2 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var2 == nil {
-			templ_7745c5c3_Var2 = templ.NopComponent
-		}
-		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<meta name=\"keywords\" content=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"><meta name=\"description\" content=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
-		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.ResolveAttributeValue(keywords)
+		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.ResolveAttributeValue(description)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 18, Col: 41}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 5, Col: 47}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var3)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\"><meta name=\"description\" content=\"")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var4 string
-		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.ResolveAttributeValue(description)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 19, Col: 47}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var4)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -108,7 +63,7 @@ func MetaTags(keywords, description string) templ.Component {
 	})
 }
 
-func BodyContent(quote string, experiences []Experince, projects []Project, skills []Skill) templ.Component {
+func TerminalContent() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -124,281 +79,41 @@ func BodyContent(quote string, experiences []Experince, projects []Project, skil
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var5 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var5 == nil {
-			templ_7745c5c3_Var5 = templ.NopComponent
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div id=\"app\" class=\"min-h-screen\"><div class=\"grain\" aria-hidden=\"true\"></div><div class=\"spotlight\" aria-hidden=\"true\"></div><!-- Hall directory --><nav class=\"scroll-dots\" x-data=\"scrollNav()\" @scroll.window=\"updateActive()\"><button @click=\"scrollToSection('hero')\" class=\"scroll-dot active\" aria-label=\"Entry hall\">✦</button> <button @click=\"scrollToSection('portrait')\" class=\"scroll-dot\" aria-label=\"Hall I — The Portrait\">I</button> <button @click=\"scrollToSection('strata')\" class=\"scroll-dot\" aria-label=\"Hall II — Employment Strata\">II</button> <button @click=\"scrollToSection('relics')\" class=\"scroll-dot\" aria-label=\"Hall III — The Relics\">III</button> <button @click=\"scrollToSection('tools')\" class=\"scroll-dot\" aria-label=\"Hall IV — Tool Assemblage\">IV</button> <button @click=\"scrollToSection('corpus')\" class=\"scroll-dot\" aria-label=\"Hall V — Fragment Corpus\">V</button></nav><!-- Entry facade --><section id=\"hero\" class=\"hall entry-hall\"><p class=\"archive-overline\">The National Archive · Wing C · Est. 2087</p><div class=\"ticket\"><span class=\"admit\">Admit One</span> — Exhibition: The Developer</div><h1 class=\"entry-name\">mwangi <span class=\"last\">kabiru</span></h1><p class=\"entry-role\">Full-Stack Developer &amp; Problem Solver</p><div class=\"placard entry-placard\">A retrospective study of <strong>Brian Mwangi Kabiru</strong>, software maker of the early GitHub era. Born Nairobi. Worked primarily in <strong>Go</strong> and <strong>TypeScript</strong>. Subject appears productive.</div><div class=\"channel-keys\"><span><kbd>G</kbd> GitHub</span> <span><kbd>L</kbd> LinkedIn</span> <span><kbd>E</kbd> Email</span> <span><kbd>S</kbd> Substack</span></div><a href=\"#portrait\" class=\"proceed-cue\" style=\"text-decoration:none;color:inherit;\">Proceed to Hall I <svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 14l-7 7m0 0l-7-7m7 7V3\"></path></svg></a></section><!-- Hall I — The Portrait --><section id=\"portrait\" class=\"hall\"><div class=\"hall-inner\"><header class=\"hall-header\"><div class=\"hall-numeral\"><span class=\"roman\">I</span> <span class=\"rule\"></span></div><h2 class=\"hall-title\">The Portrait</h2></header><div class=\"portrait-stage\"><div class=\"portrait-frame\"><img src=\"/static/images/me-away.jpeg\" alt=\"Brian Mwangi Kabiru — the subject\"><div class=\"portrait-glass\"></div></div><div class=\"portrait-plaque\"><span class=\"fig\">Fig. 1 — The subject</span> One of the few surviving portraits predating the Feed Collapse. Pigment on silicon. Photographed away from headquarters — a rarity. Gift of the subject himself, who insisted on this frame.</div></div></div></section><!-- Hall II — Employment Strata --><section id=\"strata\" class=\"hall\"><div class=\"hall-inner\"><header class=\"hall-header\"><div class=\"hall-numeral\"><span class=\"roman\">II</span> <span class=\"rule\"></span></div><h2 class=\"hall-title\">Employment Strata</h2><p class=\"hall-intro\">Five institutions housed the subject between 2020 and the present. Excavation reveals the following layers, newest nearest the surface.</p></header><div class=\"strata-rail\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div id=\"app\" class=\"term-shell\" x-data=\"terminal()\" @click=\"maybeFocus($event)\"><div class=\"term-window\"><div class=\"term-titlebar\"><span class=\"term-dots\" aria-hidden=\"true\"><span class=\"term-dot dot-red\"></span> <span class=\"term-dot dot-yellow\"></span> <span class=\"term-dot dot-green\"></span></span> <span class=\"term-title\">visitor&#64;mwangi.kabiru: ~</span> <span class=\"term-proto\">ssh · htmx</span></div><div class=\"term-body\"><div id=\"scrollback\" x-ref=\"scrollback\"><div class=\"boot\" aria-hidden=\"true\"><p class=\"boot-line\">[<span class=\"ok\">&nbsp;ok&nbsp;</span>] go 1.25 · fiber · templ · htmx — all systems nominal</p><p class=\"boot-line\">[<span class=\"ok\">&nbsp;ok&nbsp;</span>] mounted /home/visitor</p></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		for i, experience := range experiences {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<article class=\"stratum\"><p class=\"stratum-depth\">Stratum ")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var6 string
-			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", i+1))
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 114, Col: 40}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, " · <span class=\"metres\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var7 string
-			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("−%dm", (i+1)*2))
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 114, Col: 99}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</span> · ")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var8 string
-			templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(experience.Duration)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 114, Col: 133}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</p><div class=\"stratum-card\"><div class=\"flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-1\"><h3>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var9 string
-			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(experience.Title)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 118, Col: 31}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</h3><span class=\"tenure\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var10 string
-			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(experience.Duration)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 119, Col: 51}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</span></div><a href=\"")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var11 templ.SafeURL
-			templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(experience.CompanyLink))
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 121, Col: 55}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"institution\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var12 string
-			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(experience.Company)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 122, Col: 29}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</a><p class=\"desc\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var13 string
-			templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(experience.Description)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 124, Col: 48}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</p><div class=\"tooling\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			for _, tech := range experience.Technologies {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "<span>")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				var templ_7745c5c3_Var14 string
-				templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(tech)
-				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 127, Col: 22}
-				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "</span>")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</div></div></article>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "</div></div></section><!-- Hall III — The Relics --><section id=\"relics\" class=\"hall\"><div class=\"hall-inner\"><header class=\"hall-header\"><div class=\"hall-numeral\"><span class=\"roman\">III</span> <span class=\"rule\"></span></div><h2 class=\"hall-title\">The Relics</h2><p class=\"hall-intro\">Artifacts recovered intact from the subject's repositories. Several remain operational. Scholars remain baffled.</p></header><div class=\"vitrine-grid\">")
+		templ_7745c5c3_Err = Result("whoami", WhoamiOutput()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		for i, project := range projects {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "<a href=\"")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var15 templ.SafeURL
-			templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(project.Link))
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 154, Col: 43}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"vitrine\"><span class=\"stamp\">Do Not Touch</span> <span class=\"relic-no\">Relic № ")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var16 string
-			templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%02d", i+1))
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 156, Col: 66}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "</span><h3>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var17 string
-			templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinStringErrs(project.Name)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 158, Col: 22}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, " <span class=\"arrow\">↗</span></h3><p>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var18 string
-			templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(project.Description)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 161, Col: 31}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "</p><span class=\"view-request\">Request viewing ↗</span></a>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "</div></div></section><!-- Hall IV — Tool Assemblage --><section id=\"tools\" class=\"hall\"><div class=\"hall-inner\"><header class=\"hall-header\"><div class=\"hall-numeral\"><span class=\"roman\">IV</span> <span class=\"rule\"></span></div><h2 class=\"hall-title\">Tool Assemblage</h2><p class=\"hall-intro\">Seven instruments were recovered near the workstation. Condition assessed at intake by the conservation team.</p></header><div class=\"assemblage-grid\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<p class=\"term-hint\">type <code>help</code> ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		for _, skill := range skills {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "<div class=\"instrument\"><img src=\"")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var19 string
-			templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.ResolveAttributeValue(skill.Icon)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 187, Col: 28}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var19)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "\" alt=\"")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var20 string
-			templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.ResolveAttributeValue(skill.Name)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 187, Col: 47}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var20)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "\"> <span class=\"name\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var21 string
-			templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinStringErrs(skill.Name)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 188, Col: 38}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "</span>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = conditionFor(skill.Proficiency).Render(ctx, templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "</div>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
+		var templ_7745c5c3_Var5 string
+		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs("for")
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 31, Col: 36}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "</div><div class=\"placard assemblage-note\"><strong>Note.</strong> The Neovim instrument shows unusually heavy wear. Scholars still debate its ritual function.</div></div></section><!-- Hall V — The Fragment Corpus --><section id=\"corpus\" class=\"hall\"><div class=\"hall-inner\"><header class=\"hall-header\"><div class=\"hall-numeral\"><span class=\"roman\">V</span> <span class=\"rule\"></span></div><h2 class=\"hall-title\">The Fragment Corpus</h2><p class=\"hall-intro\">Over fifty short texts were recovered from the subject's device. Purpose unknown. Possibly scripture.</p></header><div class=\"corpus-stage\"><p id=\"fragment-result\" class=\"fragment-quote\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var22 string
-		templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinStringErrs(quote)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/index.templ`, Line: 217, Col: 59}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var22))
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, " commands · <code>↑</code>/<code>↓</code> history · <code>tab</code> completes · <code>clear</code> wipes</p></div><div class=\"term-chips\" aria-label=\"quick commands\"><button type=\"button\" @click=\"runCommand('help')\">help</button> <button type=\"button\" @click=\"runCommand('whoami')\">whoami</button> <button type=\"button\" @click=\"runCommand('thinkstack')\">thinkstack</button> <button type=\"button\" @click=\"runCommand('experience')\">experience</button> <button type=\"button\" @click=\"runCommand('projects')\">projects</button> <button type=\"button\" @click=\"runCommand('skills')\">skills</button> <button type=\"button\" @click=\"runCommand('fortune')\">fortune</button> <button type=\"button\" @click=\"runCommand('man kabiru')\">man kabiru</button> <button type=\"button\" @click=\"runCommand('contact')\">contact</button> <button type=\"button\" @click=\"runCommand('clear')\">clear</button></div><form hx-post=\"/api/exec\" hx-target=\"#scrollback\" hx-swap=\"beforeend\" x-ref=\"form\" class=\"term-form\" autocomplete=\"off\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "</p><button hx-get=\"/api/get-quote\" hx-target=\"#fragment-result\" hx-swap=\"innerHTML swap:300ms\" class=\"archive-btn\">Translate Another Fragment</button><p class=\"corpus-meta\">Fragments transmitted on request · via HTMX, a protocol of the period</p></div></div></section><!-- Exit / gift shop --><footer class=\"exit-hall\"><div class=\"exit-inner\"><p class=\"archive-overline\">You are leaving the exhibition</p><div class=\"exit-channels\"><a href=\"https://github.com/BrianMwangi21\" target=\"_blank\" rel=\"noopener noreferrer\" title=\"GitHub — press G\" aria-label=\"GitHub\"><img src=\"/static/images/github.svg\" alt=\"GitHub\"></a> <a href=\"https://www.linkedin.com/in/brian-mwangi/\" target=\"_blank\" rel=\"noopener noreferrer\" title=\"LinkedIn — press L\" aria-label=\"LinkedIn\"><img src=\"/static/images/linkedin.svg\" alt=\"LinkedIn\"></a> <a href=\"mailto:mwangikabiru21@gmail.com\" title=\"Email — press E\" aria-label=\"Email\"><img src=\"/static/images/gmail.svg\" alt=\"Email\"></a> <a href=\"https://wordsbykabiru.substack.com/\" target=\"_blank\" rel=\"noopener noreferrer\" title=\"Substack — press S\" aria-label=\"Substack\"><img src=\"/static/images/substack.svg\" alt=\"Substack\"></a></div><p class=\"text-sm\" style=\"color:var(--ink-dim);font-size:0.8rem;\">Curated by B. Mwangi Kabiru, who insists he had help.</p><p class=\"conservation\">Go · Fiber · Templ · HTMX · Alpine.js · Tailwind CSS<br>Tools of the era, preserved in working order</p><a href=\"https://github.com/BrianMwangi21\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"archive-btn\" style=\"text-decoration:none;display:inline-block;\">View the archive ↗</a></div></footer><button data-mode-toggle class=\"mode-toggle\" title=\"Toggle day mode (staff only)\">Day Mode — Staff Only</button></div>")
+		templ_7745c5c3_Err = PromptLabel().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<input x-ref=\"input\" x-model=\"input\" @keydown=\"onKeydown($event)\" type=\"text\" name=\"command\" class=\"term-input\" spellcheck=\"false\" autocapitalize=\"off\" autocomplete=\"off\" aria-label=\"terminal input\"></form></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

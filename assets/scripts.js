@@ -1,18 +1,3 @@
-// ==================== CRITICAL: Initialize exhibition lighting BEFORE imports ====================
-// Night gallery is the default. Day mode ("staff only") is opt-in via localStorage.
-;(function () {
-  const html = document.documentElement
-  const isDay = localStorage.getItem('theme') === 'day'
-
-  if (isDay) {
-    html.classList.add('day')
-  } else {
-    html.classList.remove('day')
-  }
-
-  window.__isDayMode = isDay
-})()
-
 // ==================== Imports ====================
 import 'htmx.org'
 import Alpine from 'alpinejs'
@@ -20,72 +5,154 @@ import Alpine from 'alpinejs'
 // Add Alpine instance to window object.
 window.Alpine = Alpine
 
-// ==================== Scroll navigation (hall directory) ====================
-window.scrollNav = function () {
+// ==================== Terminal ====================
+window.terminal = function () {
   return {
-    updateActive() {
-      const sections = [
-        'hero',
-        'portrait',
-        'strata',
-        'relics',
-        'tools',
-        'corpus',
-      ]
-      const scrollPosition = window.scrollY + window.innerHeight / 3
+    input: '',
+    history: [],
+    hIndex: -1,
+    commands: [
+      'help',
+      'whoami',
+      'thinkstack',
+      'experience',
+      'projects',
+      'skills',
+      'fortune',
+      'man kabiru',
+      'contact',
+      'ls',
+      'clear',
+      'exit',
+      'sudo make me a sandwich',
+    ],
 
-      sections.forEach((id, index) => {
-        const section = document.getElementById(id)
-        if (section) {
-          const { offsetTop, offsetHeight } = section
-          const dots = document.querySelectorAll('.scroll-dot')
+    init() {
+      // htmx fires DOM events (camelCase) — listen directly so `this`
+      // stays bound to this Alpine component. (hx-on would bind `this`
+      // to the form element instead.)
+      this.$refs.form.addEventListener('htmx:configRequest', (evt) =>
+        this.beforeRequest(evt),
+      )
+      this.$refs.form.addEventListener('htmx:afterRequest', () =>
+        this.afterRequest(),
+      )
+      if (window.matchMedia('(pointer: fine)').matches) {
+        this.$refs.input.focus()
+      }
+    },
 
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
-            dots.forEach((dot) => dot.classList.remove('active'))
-            if (dots[index]) dots[index].classList.add('active')
-          }
-        }
+    // Focus the input when clicking anywhere in the shell,
+    // unless the visitor is selecting text or clicking a link/button.
+    maybeFocus(event) {
+      if (!this.$refs.input) return
+      if (window.getSelection().toString()) return
+      if (event.target.closest('a, button')) return
+      this.$refs.input.focus()
+    },
+
+    // Runs before htmx sends the request. Returning nothing lets it
+    // proceed; preventing the event handles the command locally.
+    beforeRequest(event) {
+      const cmd = this.input.trim()
+
+      if (!cmd) {
+        event.preventDefault()
+        return
+      }
+
+      this.history.push(cmd)
+      this.hIndex = this.history.length
+
+      if (cmd === 'clear' || cmd === 'cls') {
+        event.preventDefault()
+        this.input = ''
+        this.$refs.scrollback.innerHTML = ''
+        return
+      }
+    },
+
+    afterRequest() {
+      this.input = ''
+      this.$nextTick(() => {
+        this.scrollToBottom()
+        this.$refs.input.focus({ preventScroll: true })
       })
     },
-    scrollToSection(id) {
-      const section = document.getElementById(id)
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' })
+
+    scrollToBottom() {
+      const sb = this.$refs.scrollback
+      if (sb) sb.scrollTo({ top: sb.scrollHeight, behavior: 'instant' })
+    },
+
+    runCommand(cmd) {
+      this.input = cmd
+      this.$nextTick(() => this.$refs.form.requestSubmit())
+    },
+
+    onKeydown(event) {
+      switch (event.key) {
+        case 'ArrowUp': {
+          event.preventDefault()
+          if (this.hIndex > 0) {
+            this.hIndex -= 1
+            this.input = this.history[this.hIndex]
+          }
+          break
+        }
+        case 'ArrowDown': {
+          event.preventDefault()
+          if (this.hIndex < this.history.length - 1) {
+            this.hIndex += 1
+            this.input = this.history[this.hIndex]
+          } else {
+            this.hIndex = this.history.length
+            this.input = ''
+          }
+          break
+        }
+        case 'Tab': {
+          event.preventDefault()
+          const partial = this.input.trim().toLowerCase()
+          if (!partial) return
+          const match = this.commands.find(
+            (c) => c.startsWith(partial) && c !== partial,
+          )
+          if (match) this.input = match
+          break
+        }
+        case 'c':
+        case 'C': {
+          if (!event.ctrlKey) return
+          event.preventDefault()
+          this.appendLocal('^C')
+          this.input = ''
+          break
+        }
+        case 'l':
+        case 'L': {
+          if (!event.ctrlKey) return
+          event.preventDefault()
+          this.$refs.scrollback.innerHTML = ''
+          this.input = ''
+          break
+        }
       }
+    },
+
+    // Append a locally-rendered block (no server round-trip).
+    appendLocal(text) {
+      const block = document.createElement('div')
+      block.className = 'term-block'
+      const echo = document.createElement('div')
+      echo.className = 'term-echo'
+      echo.textContent = text
+      block.appendChild(echo)
+      this.$refs.scrollback.appendChild(block)
+      this.scrollToBottom()
     },
   }
 }
-
-// ==================== Cursor spotlight ====================
-document.addEventListener('mousemove', (e) => {
-  document.documentElement.style.setProperty('--mx', `${e.clientX}px`)
-  document.documentElement.style.setProperty('--my', `${e.clientY}px`)
-})
-
-// ==================== Hall lighting ====================
-document.addEventListener('DOMContentLoaded', () => {
-  const halls = document.querySelectorAll('.hall')
-  if (!halls.length) return
-
-  const lightHall = (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('lit')
-        observer.unobserve(entry.target)
-      }
-    })
-  }
-
-  const observer = new IntersectionObserver(lightHall, {
-    threshold: 0.12,
-    rootMargin: '0px 0px -8% 0px',
-  })
-
-  halls.forEach((hall) => observer.observe(hall))
-})
 
 // ==================== Communication channels (keyboard) ====================
 document.addEventListener('keydown', (e) => {
@@ -105,36 +172,6 @@ document.addEventListener('keydown', (e) => {
     case 's':
       window.open('https://wordsbykabiru.substack.com/', '_blank')
       break
-  }
-})
-
-// ==================== Day mode toggle ("staff only") ====================
-const MODE_LABELS = {
-  day: 'Night Mode — Public Hours',
-  night: 'Day Mode — Staff Only',
-}
-
-function syncModeToggle() {
-  const button = document.querySelector('[data-mode-toggle]')
-  if (!button) return
-  const isDay = document.documentElement.classList.contains('day')
-  button.textContent = MODE_LABELS[isDay ? 'day' : 'night']
-  button.title = isDay
-    ? 'Return to night mode (public hours)'
-    : 'Toggle day mode (staff only)'
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  syncModeToggle()
-
-  const modeButton = document.querySelector('[data-mode-toggle]')
-  if (modeButton) {
-    modeButton.addEventListener('click', () => {
-      const html = document.documentElement
-      const isDay = html.classList.toggle('day')
-      localStorage.setItem('theme', isDay ? 'day' : 'night')
-      syncModeToggle()
-    })
   }
 })
 

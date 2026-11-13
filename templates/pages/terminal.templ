@@ -1,0 +1,233 @@
+package pages
+
+import (
+	"fmt"
+	"strings"
+)
+
+// ==================== Prompt ====================
+
+templ PromptLabel() {
+	<span class="ps1"><span class="ps1-user">visitor</span>&#64;<span class="ps1-host">mwangi.kabiru</span><span class="ps1-path">:~$</span></span>
+}
+
+// ==================== Result wrapper ====================
+
+templ Result(command string, output templ.Component) {
+	<div class="term-block">
+		<div class="term-echo">@PromptLabel(){ " " }<span class="term-cmd">{ command }</span></div>
+		<div class="term-out">
+			@output
+		</div>
+	</div>
+}
+
+// ==================== Generic text output ====================
+
+templ TextOutput(lines ...string) {
+	for _, line := range lines {
+		<p>{ line }</p>
+	}
+}
+
+// ==================== help ====================
+
+templ HelpOutput() {
+	<p class="out-head">available commands:</p>
+	<div class="out-grid">
+		<span class="cmd">whoami</span><span>who is this guy</span>
+		<span class="cmd">thinkstack</span><span>the venture studio &amp; its products</span>
+		<span class="cmd">experience</span><span>the career logs (2020 → now)</span>
+		<span class="cmd">projects</span><span>things i've shipped</span>
+		<span class="cmd">skills</span><span>tools of the trade</span>
+		<span class="cmd">fortune</span><span>a random fragment from the collection</span>
+		<span class="cmd">man kabiru</span><span>the manual page</span>
+		<span class="cmd">contact</span><span>how to reach me</span>
+		<span class="cmd">ls</span><span>look around the filesystem</span>
+		<span class="cmd">clear</span><span>wipe the screen</span>
+	</div>
+	<p class="out-foot">shortcuts: <kbd>g</kbd> github · <kbd>l</kbd> linkedin · <kbd>e</kbd> email · <kbd>s</kbd> substack <span class="dim">(when input isn't focused)</span></p>
+	<p class="out-foot">pro tip: <kbd>↑</kbd>/<kbd>↓</kbd> history · <kbd>tab</kbd> completes · try <code>sudo make me a sandwich</code></p>
+}
+
+// ==================== whoami ====================
+
+templ WhoamiOutput() {
+	<p class="whoami-name">brian mwangi kabiru</p>
+	<p class="whoami-role">full-stack developer · nairobi, ke 🇰🇪</p>
+	<p>
+		i build software for the web. currently at <a href="https://www.sourcefabric.org/" target="_blank" rel="noopener noreferrer">sourcefabric</a> making
+		live blogs happen; previously atlys, azenia, digital vision.
+		go &amp; typescript are home, but i'll speak whatever the problem needs.
+	</p>
+	<p>
+		when i'm not doing that, i'm building <span class="cmd">thinkstack</span> — my venture
+		studio. type <code>thinkstack</code> to see what we've shipped.
+	</p>
+	<p class="dim">yes, this site is a terminal. yes, it's go + templ + htmx under the hood.</p>
+}
+
+// ==================== experience ====================
+
+templ ExperienceOutput(experiences []Experince) {
+	for _, e := range experiences {
+		<div class="xp">
+			<p class="xp-head"><span class="dim">{ e.Duration }</span></p>
+			<p class="xp-title">{ e.Title } · <a href={ templ.SafeURL(e.CompanyLink) } target="_blank" rel="noopener noreferrer">{ e.Company }</a></p>
+			<p class="xp-desc">{ e.Description }</p>
+			<p class="xp-tech">{ strings.Join(e.Technologies, " · ") }</p>
+		</div>
+	}
+}
+
+// ==================== projects ====================
+
+templ ProjectsOutput(projects []Project) {
+	<div class="proj-list">
+		for i, p := range projects {
+			<div class="proj">
+				<span class="dim">{ fmt.Sprintf("%2d.", i+1) }</span>
+				<span class="proj-body">
+					<a href={ templ.SafeURL(p.Link) } target="_blank" rel="noopener noreferrer" class="proj-name">{ p.Name }</a>
+					<span class="dim"> — { p.Description }</span>
+				</span>
+			</div>
+		}
+	</div>
+	<p class="out-foot">more where that came from → <a href="https://github.com/BrianMwangi21" target="_blank" rel="noopener noreferrer">github.com/BrianMwangi21</a></p>
+}
+
+// ==================== skills ====================
+
+templ skillBar(proficiency string) {
+	if proficiency == "Expert" {
+		<span class="bar-fill">██████████</span>
+	} else if proficiency == "Proficient" {
+		<span class="bar-fill">███████</span><span class="bar-empty">░░░</span>
+	} else {
+		<span class="bar-fill">████</span><span class="bar-empty">░░░░░░</span>
+	}
+}
+
+templ SkillsOutput(skills []Skill) {
+	<div class="skill-list">
+		for _, s := range skills {
+			<div class="skill">
+				<span class="skill-name">{ strings.ToLower(s.Name) }</span>
+				<span class="skill-bar">@skillBar(s.Proficiency)</span>
+				<span class="skill-level">{ strings.ToLower(s.Proficiency) }</span>
+				if s.Name == "Neovim" {
+					<span class="dim">← unusually heavy wear</span>
+				}
+			</div>
+		}
+	</div>
+	<p class="out-foot">currently sharpening: rust, because every go dev gets there eventually</p>
+}
+
+// ==================== thinkstack (ventures) ====================
+
+templ VenturesOutput(ventures []Venture) {
+	<p class="whoami-name">thinkstack</p>
+	<p class="whoami-role">a company that builds companies · kenya → global</p>
+	<p class="dim">find everyday problems worth solving, ship small sharp products,
+		grow the ones that work into standalone ventures — all on one shared stack.</p>
+	for i, v := range ventures {
+		<div class="xp">
+			<p class="xp-head">
+				<span class="dim">venture { fmt.Sprintf("%02d", i+1) }</span>
+				if v.Status == "live" {
+					<span class="venture-live">[{ v.Status }]</span>
+				} else {
+					<span class="venture-beta">[{ v.Status }]</span>
+				}
+			</p>
+			<p class="xp-title"><a href={ templ.SafeURL(v.Link) } target="_blank" rel="noopener noreferrer">{ v.Name }</a></p>
+			<p class="xp-desc">{ v.Description }</p>
+			if len(v.Stats) > 0 {
+				<p class="venture-stats">
+					for _, s := range v.Stats {
+						<span><strong>{ s.Value }</strong>&nbsp;{ s.Label }</span>
+					}
+				</p>
+			}
+		</div>
+	}
+	<p class="out-foot">got a problem worth solving? → <a href="https://thinkstackhq.vercel.app/" target="_blank" rel="noopener noreferrer">thinkstackhq.vercel.app</a></p>
+}
+
+// ==================== fortune ====================
+
+templ FortuneOutput(quote string) {
+	<p class="fortune">{ quote }</p>
+	<p class="dim">— fragment recovered from the device · run <code>fortune</code> again { "for" } another</p>
+}
+
+// ==================== man kabiru ====================
+
+templ ManOutput() {
+	<pre class="man">KABIRU(1)                     user commands                    KABIRU(1)
+
+NAME
+    kabiru — full-stack developer, problem solver
+
+SYNOPSIS
+    kabiru [--ship] [--no-drama] &lt;product&gt;...
+
+DESCRIPTION
+    builds software { "for" } the web. works primarily in go and
+    typescript. appears productive. based in nairobi.
+
+OPTIONS
+    --ship        merge it. we'll fix forward.
+    --no-drama    keep meetings short and code shorter.
+
+BUGS
+    neovim config shows unusually heavy wear.
+    reports of "one last side project" are recurring
+    and believed incurable.
+
+SEE ALSO
+    experience(1), fortune(1), contact(1)
+
+mwangi.kabiru 4.2              nov 2026                      KABIRU(1)</pre>
+}
+
+// ==================== contact ====================
+
+templ ContactOutput() {
+	<div class="out-grid">
+		<span class="cmd">email</span><span><a href="mailto:mwangikabiru21@gmail.com">mwangikabiru21@gmail.com</a></span>
+		<span class="cmd">github</span><span><a href="https://github.com/BrianMwangi21" target="_blank" rel="noopener noreferrer">github.com/BrianMwangi21</a></span>
+		<span class="cmd">linkedin</span><span><a href="https://www.linkedin.com/in/brian-mwangi/" target="_blank" rel="noopener noreferrer">linkedin.com/in/brian-mwangi</a></span>
+		<span class="cmd">substack</span><span><a href="https://wordsbykabiru.substack.com/" target="_blank" rel="noopener noreferrer">wordsbykabiru.substack.com</a></span>
+	</div>
+	<p class="out-foot">or just press <kbd>g</kbd> / <kbd>l</kbd> / <kbd>e</kbd> / <kbd>s</kbd> when the input isn't focused</p>
+}
+
+// ==================== ls ====================
+
+templ LsOutput() {
+	<pre class="man">total 6
+drwxr-xr-x  ventures/      <span class="dim">→ thinkstack</span>
+drwxr-xr-x  projects/      <span class="dim">→ ls projects</span>
+-rw-r--r--  about.txt      <span class="dim">→ cat about.txt</span>
+-rw-r--r--  career.log     <span class="dim">→ cat career.log</span>
+-rw-r--r--  skills.txt     <span class="dim">→ cat skills.txt</span>
+-rw-r--r--  contact.txt    <span class="dim">→ cat contact.txt</span>
+-r--r--r--  quotes.db      <span class="dim">→ fortune</span></pre>
+}
+
+// ==================== paige denial ====================
+
+templ PaigeDeniedOutput() {
+	<p><span class="err">cat: paige/: permission denied</span></p>
+	<p>some directories aren't yours to read. 🔒</p>
+	<p class="dim">({ "if" } you know, you know → <a href="/paige">/paige</a>)</p>
+}
+
+// ==================== command not found ====================
+
+templ NotFoundOutput(cmd string) {
+	<p><span class="err">bash: { cmd }: command not found</span> <span class="dim">— type <code>help</code></span></p>
+}

@@ -36,7 +36,7 @@ func runServer() error {
 
 	server.Get("/paige", paigeHandler)
 
-	server.Get("/api/get-quote", getQuoteHandler)
+	server.Post("/api/exec", execCommandHandler)
 
 	return server.Listen(fmt.Sprintf(":%d", port))
 }
