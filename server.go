@@ -30,7 +30,7 @@ func runServer() error {
 
 	server.Use(logger.New())
 
-	server.Static("/static", "./static")
+	server.Static("/static", "./static", fiber.Static{MaxAge: 300})
 
 	server.Get("/", indexViewHandler)
 

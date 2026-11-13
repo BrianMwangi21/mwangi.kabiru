@@ -693,3 +693,209 @@ kbd {
   text-stroke-width: 1px;
   text-stroke-color: #002d62;
 }
+
+/* ==================================================================
+   Paige's letters — sealed envelopes (/paige)
+   ================================================================== */
+
+.letters-sub {
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.letters-foot {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.letters-foot .dancing-font {
+  font-size: 1.3rem;
+  color: #002d62;
+}
+
+.envelope {
+  position: relative;
+  transition: transform 0.25s ease;
+}
+
+.envelope:nth-child(odd) {
+  transform: rotate(-0.5deg);
+}
+
+.envelope:nth-child(even) {
+  transform: rotate(0.5deg);
+}
+
+.envelope.is-open {
+  transform: none;
+}
+
+/* ---- Envelope front ---- */
+
+.envelope-front {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  padding: 3.9rem 1.5rem 1.9rem;
+  cursor: pointer;
+  text-align: center;
+  font-family: inherit;
+  color: inherit;
+  background: linear-gradient(180deg, #f7ecd7 0%, #f0e1c3 100%);
+  border: 1px solid rgba(120, 85, 40, 0.28);
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(60, 40, 10, 0.18);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-radius 0.3s ease;
+  overflow: hidden;
+}
+
+.envelope-front:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(60, 40, 10, 0.24);
+}
+
+.envelope.is-open .envelope-front {
+  border-radius: 10px 10px 0 0;
+  cursor: default;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.4rem;
+  background: linear-gradient(180deg, #e9d5b0 0%, #f3e6cc 100%);
+  border-bottom: 1px solid rgba(120, 85, 40, 0.25);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition:
+    transform 0.5s ease,
+    opacity 0.45s ease;
+}
+
+.envelope.is-open .envelope-flap {
+  transform: rotateX(160deg);
+  opacity: 0;
+}
+
+.envelope-postmark {
+  position: absolute;
+  top: 0.85rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border: 2px dashed rgba(0, 45, 98, 0.35);
+  border-radius: 50%;
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  color: rgba(0, 45, 98, 0.5);
+  transform: rotate(12deg);
+}
+
+.envelope-meta {
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #8a7a5c;
+}
+
+.envelope-title {
+  font-size: 2.1rem;
+  line-height: 1.15;
+  color: #002d62;
+}
+
+.envelope-note {
+  font-family: 'Kalam', cursive;
+  font-size: 0.95rem;
+  color: #6b6152;
+}
+
+.envelope-hint {
+  margin-top: 0.5rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #a08d66;
+  animation: hint-pulse 2.6s ease-in-out infinite;
+}
+
+.envelope.is-open .envelope-hint {
+  display: none;
+}
+
+@keyframes hint-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+/* ---- The letter inside ---- */
+
+.letter-paper {
+  background:
+    radial-gradient(circle at 15% 0%, rgba(0, 45, 98, 0.05), transparent 45%),
+    linear-gradient(180deg, #fffdf6 0%, #fdf8ec 100%);
+  border: 1px solid rgba(120, 85, 40, 0.22);
+  border-top: none;
+  border-radius: 0 0 18px 18px;
+  padding: 1.9rem clamp(1.15rem, 4vw, 2.3rem) 1.3rem;
+  box-shadow: 0 20px 36px rgba(60, 40, 10, 0.16);
+  font-family: 'Kalam', cursive;
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: #3d3a33;
+}
+
+.letter-paper img {
+  border-radius: 14px;
+}
+
+.letter-close {
+  display: block;
+  margin: 1.6rem auto 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8a7a5c;
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed rgba(120, 85, 40, 0.4);
+  padding: 0 0 0.15rem;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.letter-close:hover {
+  color: #002d62;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .envelope-flap,
+  .envelope-front {
+    transition: none;
+  }
+
+  .envelope-hint {
+    animation: none;
+  }
+}
+
+/* Keep overscroll on /paige warm — the global html bg is terminal-dark */
+html:has(.scrapbook-bg),
+body:has(.scrapbook-bg) {
+  background: #fffaf3;
+}

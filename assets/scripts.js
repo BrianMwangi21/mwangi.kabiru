@@ -154,6 +154,29 @@ window.terminal = function () {
   }
 }
 
+// ==================== Paige letters (sealed envelopes) ====================
+window.letters = function () {
+  return {
+    open: null,
+    toggle(id) {
+      this.open = this.open === id ? null : id
+      if (this.open) {
+        // Let hidden things (the scratch card) know they're now visible.
+        window.dispatchEvent(
+          new CustomEvent('letter:open', { detail: this.open }),
+        )
+        this.$nextTick(() => {
+          const el = document.getElementById('letter-' + this.open)
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        })
+      }
+    },
+    isOpen(id) {
+      return this.open === id
+    },
+  }
+}
+
 // ==================== Communication channels (keyboard) ====================
 document.addEventListener('keydown', (e) => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return
@@ -323,7 +346,13 @@ document.addEventListener('DOMContentLoaded', () => {
     paintCover()
   })
 
-  resetCard()
+  // The card lives inside a sealed envelope: it has no dimensions until
+  // letter 004 is opened, so initialize on first open instead of on load.
+  window.addEventListener('letter:open', (event) => {
+    if (event.detail === '004') requestAnimationFrame(resetCard)
+  })
+
+  if (card.offsetParent !== null) resetCard()
 })
 
 // ==================== Start Alpine ====================

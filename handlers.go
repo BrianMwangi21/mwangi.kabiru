@@ -34,10 +34,7 @@ func indexViewHandler(c *fiber.Ctx) error {
 }
 
 func paigeHandler(c *fiber.Ctx) error {
-	metaTags := pages.MetaTags(
-		"mwangi kabiru",
-		"Allow me to reintroduce myself!",
-	)
+	metaTags := pages.PaigeMetaTags()
 
 	bodyContent := pages.PaigeContent()
 
